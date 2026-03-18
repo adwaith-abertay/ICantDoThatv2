@@ -15,10 +15,7 @@ public class Pathfinder : MonoBehaviour
 
     private Dictionary<TileData, Material> originalMaterials = new Dictionary<TileData, Material>();
 
-    private void Awake()
-    {
-        Instance = this;
-    }
+    private void Awake() => Instance = this;
 
     private void Update()
     {
@@ -32,7 +29,6 @@ public class Pathfinder : MonoBehaviour
     private void TestPath()
     {
         List<TileData> path = FindPath(startTile, targetTile);
-
         if (path == null) return;
 
         Debug.Log($"Path found! {path.Count} tiles:");
@@ -45,7 +41,6 @@ public class Pathfinder : MonoBehaviour
     public void HighlightPath(List<TileData> path)
     {
         ClearHighlights();
-
         foreach (TileData tile in path)
         {
             MeshRenderer renderer = tile.GetComponent<MeshRenderer>();
@@ -68,7 +63,7 @@ public class Pathfinder : MonoBehaviour
         originalMaterials.Clear();
     }
 
-    public List<TileData> FindPath(string startTile, string targetTile)
+    public List<TileData> FindPath(string startTile, string targetTile, HashSet<string> blockedTiles = null, bool canUseVents = false)
     {
         TileData start = GridManager.Instance.GetTile(startTile);
         TileData target = GridManager.Instance.GetTile(targetTile);
@@ -94,6 +89,14 @@ public class Pathfinder : MonoBehaviour
 
             foreach (TileData neighbour in GridManager.Instance.GetNeighbours(current.tileName))
             {
+                // Skip fire tiles
+                if (blockedTiles != null && blockedTiles.Contains(neighbour.tileName))
+                    continue;
+
+                // Skip vent tiles if character can't use vents
+                if (neighbour.isVent && !canUseVents)
+                    continue;
+
                 if (!cameFrom.ContainsKey(neighbour))
                 {
                     queue.Enqueue(neighbour);

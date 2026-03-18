@@ -7,8 +7,8 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<string, TileData> tiles = new Dictionary<string, TileData>();
 
-    // Rows: a-u (0-20), Columns: 1-34
-    private const string ROW_LETTERS = "ABCDEFGHIJKLMNOPQRSTU";
+    // Rows: a-v (0-21), Columns: 1-34
+    private const string ROW_LETTERS = "ABCDEFGHIJKLMNOPQRSTUV";
 
     private void Awake()
     {
