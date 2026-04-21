@@ -69,6 +69,11 @@ public class GridManager : MonoBehaviour
 
         return neighbours;
     }
+    public List<TileData> GetAllNeighbours(string tileName)
+    {
+        return GetNeighbours(tileName);
+    }
+
 
     public bool TileExists(string tileName)
     {

@@ -87,22 +87,20 @@ public class Pathfinder : MonoBehaviour
             if (current == target)
                 return BuildPath(cameFrom, start, target);
 
-            foreach (TileData neighbour in GridManager.Instance.GetNeighbours(current.tileName))
-            {
-                // Skip fire tiles
-                if (blockedTiles != null && blockedTiles.Contains(neighbour.tileName))
-                    continue;
-
-                // Skip vent tiles if character can't use vents
-                if (neighbour.isVent && !canUseVents)
-                    continue;
-
-                if (!cameFrom.ContainsKey(neighbour))
+                foreach (TileData neighbour in GridManager.Instance.GetNeighbours(current.tileName))
                 {
-                    queue.Enqueue(neighbour);
-                    cameFrom[neighbour] = current;
+                    if (blockedTiles != null && blockedTiles.Contains(neighbour.tileName)) continue;
+                    if (neighbour.isVent && !canUseVents) continue;
+
+                    // Skip if this neighbour is blocked by a locked door
+                    if (current.blockedNeighbours.Contains(neighbour.tileName)) continue;
+
+                    if (!cameFrom.ContainsKey(neighbour))
+                    {
+                        queue.Enqueue(neighbour);
+                        cameFrom[neighbour] = current;
+                    }
                 }
-            }
         }
 
         Debug.LogWarning($"No path found from {startTile} to {targetTile}");

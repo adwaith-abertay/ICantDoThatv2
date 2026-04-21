@@ -1,16 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public enum TurnPhase { PlayerTurn, CrewTurn, FireSpread, O2Spread }
+    public enum TurnPhase { PlayerTurn, O2Phase, FirePhase, AlienPhase, CrewTurn }
     public TurnPhase currentPhase = TurnPhase.PlayerTurn;
 
     [Header("Win/Lose")]
     public string mainSwitchTile;
+
+    [Header("Alien")]
+    public string alienSpawnTile;
 
     private List<CharacterMovement> crewMembers = new List<CharacterMovement>();
     private int o2TurnsRemaining = -1;
@@ -36,26 +40,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator RunTurnCycle()
     {
-        // Crew Turn
-        currentPhase = TurnPhase.CrewTurn;
-        Debug.Log("--- Crew Turn ---");
-        yield return StartCoroutine(AIBrain.Instance.RunCrewActions());
-
-        // Fire Spread
-        currentPhase = TurnPhase.FireSpread;
-        Debug.Log("--- Fire Spread ---");
-        FireSpread.Instance.SpreadFireTurn();
-        yield return new WaitForSeconds(0.5f);
-        CheckFireDeaths();
-
-        // O2 Countdown
+        // --- O2 Phase ---
+        currentPhase = TurnPhase.O2Phase;
         if (o2Triggered)
         {
-            currentPhase = TurnPhase.O2Spread;
             o2TurnsRemaining--;
-            Debug.Log($"--- O2 Countdown | Turns remaining: {o2TurnsRemaining} ---");
+            Debug.Log($"--- O2 Phase | {o2TurnsRemaining} turns left ---");
 
-            // At turn 2 — no oxygen left, fire cannot burn
             if (o2TurnsRemaining == 2)
             {
                 FireSpread.Instance.ExtinguishAllFire();
@@ -69,8 +60,31 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        // --- Fire Phase ---
+        currentPhase = TurnPhase.FirePhase;
+        Debug.Log("--- Fire Phase ---");
+        FireSpread.Instance.SpreadFireTurn();
+        yield return new WaitForSeconds(0.5f);
+        CheckFireDeaths();
+
+        // --- Alien Phase ---
+        currentPhase = TurnPhase.AlienPhase;
+        if (Alien.Instance.IsReleased())
+        {
+            Debug.Log("--- Alien Phase ---");
+            yield return StartCoroutine(Alien.Instance.TakeTurn());
+        }
+
+        // --- Crew Turn ---
+        currentPhase = TurnPhase.CrewTurn;
+        Debug.Log("--- Crew Turn ---");
+        yield return StartCoroutine(AIBrain.Instance.RunCrewActions());
+
+        // Robot takes its turn after crew      
+
         // Generate energy for next player turn
         PlayerActionManager.Instance.GenerateEnergy();
+        DoorManager.Instance.UnlockAllDoors();
 
         // Back to player turn
         currentPhase = TurnPhase.PlayerTurn;
@@ -91,14 +105,26 @@ public class GameManager : MonoBehaviour
     {
         o2Triggered = false;
         o2TurnsRemaining = -1;
-        Debug.Log("O2 restored! Timer cleared. Fire continues if still active.");
+        Debug.Log("O2 restored!");
         PlayerActionUI.Instance.RefreshButtons();
+    }
+
+    public void ReleaseAlien()
+    {
+        Alien.Instance.Release(alienSpawnTile);
     }
 
     public void RemoveCrewMember(CharacterMovement crew)
     {
+        if (crew == null) return;
+
         crewMembers.Remove(crew);
-        Destroy(crew.gameObject);
+
+        if (crew.gameObject != null)
+            Destroy(crew.gameObject);
+
+        crewMembers.RemoveAll(c => c == null || c.gameObject == null);
+
         Debug.Log($"Crew member eliminated! {crewMembers.Count} remaining.");
 
         if (crewMembers.Count == 0)
@@ -108,36 +134,48 @@ public class GameManager : MonoBehaviour
     public void CrewWins(string role)
     {
         Debug.Log($"CREW WINS! {role} reached the main switch!");
-        UIManager.Instance.ShowCrewWin(role);
-        Time.timeScale = 0;
+        SceneManager.LoadScene("CrewWinScene");
     }
 
     public void AIWins(string reason)
     {
         Debug.Log($"AI WINS! {reason}");
-        UIManager.Instance.ShowAIWin(reason);
-        Time.timeScale = 0;
+        SceneManager.LoadScene("AIWinScene");
     }
 
     private void CheckFireDeaths()
     {
-        List<CharacterMovement> toRemove = new List<CharacterMovement>();
+        List<CharacterMovement> snapshot = new List<CharacterMovement>(crewMembers);
 
-        foreach (CharacterMovement crew in crewMembers)
+        foreach (CharacterMovement crew in snapshot)
         {
+            if (crew == null || crew.gameObject == null) continue;
+
             if (FireSpread.Instance.IsTileOnFire(crew.GetCurrentTile()))
             {
                 Debug.Log($"{crew.gameObject.tag} burned to death!");
-                toRemove.Add(crew);
+                RemoveCrewMember(crew);
             }
         }
 
-        foreach (CharacterMovement crew in toRemove)
-            RemoveCrewMember(crew);
+        // Also check Robot for fire death
+        if (Robot.Instance != null && Robot.Instance.gameObject.activeInHierarchy)
+        {
+            if (FireSpread.Instance.IsTileOnFire(Robot.Instance.GetCurrentTile()))
+            {
+                Debug.Log("Robot burned to death!");
+                Destroy(Robot.Instance.gameObject);
+            }
+        }
     }
 
     public bool IsO2Triggered() => o2Triggered;
     public int GetO2Turns() => o2TurnsRemaining;
     public string GetMainSwitchTile() => mainSwitchTile;
-    public List<CharacterMovement> GetCrewMembers() => crewMembers;
+
+    public List<CharacterMovement> GetCrewMembers()
+    {
+        crewMembers.RemoveAll(c => c == null || c.gameObject == null);
+        return new List<CharacterMovement>(crewMembers);
+    }
 }

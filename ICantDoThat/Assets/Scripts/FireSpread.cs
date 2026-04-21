@@ -6,125 +6,94 @@ public class FireSpread : MonoBehaviour
     public static FireSpread Instance;
 
     [Header("Fire Settings")]
-    public string fireSeedTile;      // set in Inspector
-    public Material fireMaterial;
-    public Material defaultMaterial;
+    public string startingFireTile;
+    public GameObject fireSpritePrefab; // Drag your fire 2D sprite prefab here
 
     private HashSet<string> burningTiles = new HashSet<string>();
-    private Queue<string> spreadQueue = new Queue<string>();
-    private bool firstSpread = true;
-    private bool fireActive = false;
+    private Dictionary<string, GameObject> spawnedFires = new Dictionary<string, GameObject>();
 
     private void Awake() => Instance = this;
 
-    // Player presses "Start Fire"
-    public void IgniteTileByName(string _ignored)
+    private void Start() { }
+
+    public void StartFire()
     {
-        if (fireActive) return;
-
-        IgniteTile(fireSeedTile);
-        fireActive = true;
-        firstSpread = true;
-
-        foreach (TileData n in GridManager.Instance.GetNeighbours(fireSeedTile))
-            spreadQueue.Enqueue(n.tileName);
-
-        Debug.Log($"Fire ignited on {fireSeedTile}! Will spread next turn.");
-    }
-
-    // Called each turn by GameManager
-    public void SpreadFireTurn()
-    {
-        if (!fireActive || burningTiles.Count == 0) return;
-        SpreadFire();
-    }
-
-    private void SpreadFire()
-    {
-        if (firstSpread)
+        if (string.IsNullOrEmpty(startingFireTile))
         {
-            // Turn 2: + shape
-            List<string> firstBatch = new List<string>(spreadQueue);
-            spreadQueue.Clear();
-
-            foreach (string tileName in firstBatch)
-            {
-                if (!burningTiles.Contains(tileName))
-                {
-                    IgniteTile(tileName);
-                    foreach (TileData n in GridManager.Instance.GetNeighbours(tileName))
-                    {
-                        if (!burningTiles.Contains(n.tileName) &&
-                            !new HashSet<string>(spreadQueue).Contains(n.tileName))
-                            spreadQueue.Enqueue(n.tileName);
-                    }
-                }
-            }
-
-            firstSpread = false;
+            Debug.LogWarning("No starting fire tile assigned!");
             return;
         }
-
-        // Turn 3+ : random 4
-        int spread = 0;
-        while (spread < 4 && spreadQueue.Count > 0)
-        {
-            List<string> queueList = new List<string>(spreadQueue);
-            spreadQueue.Clear();
-
-            int randomIndex = Random.Range(0, queueList.Count);
-            string chosen = queueList[randomIndex];
-            queueList.RemoveAt(randomIndex);
-
-            foreach (string t in queueList)
-                spreadQueue.Enqueue(t);
-
-            if (!burningTiles.Contains(chosen))
-            {
-                IgniteTile(chosen);
-                foreach (TileData n in GridManager.Instance.GetNeighbours(chosen))
-                {
-                    if (!burningTiles.Contains(n.tileName) &&
-                        !new HashSet<string>(spreadQueue).Contains(n.tileName))
-                        spreadQueue.Enqueue(n.tileName);
-                }
-                spread++;
-            }
-        }
+        IgniteTile(startingFireTile);
     }
 
-    private void IgniteTile(string tileName)
+    public void SpreadFireTurn()
     {
-        TileData tile = GridManager.Instance.GetTile(tileName);
-        if (tile == null) return;
+        HashSet<string> toIgnite = new HashSet<string>();
 
-        MeshRenderer renderer = tile.GetComponent<MeshRenderer>();
-        if (renderer != null) renderer.material = fireMaterial;
+        foreach (string burning in burningTiles)
+        {
+            List<TileData> neighbours = GridManager.Instance.GetAllNeighbours(burning);
+            foreach (TileData neighbour in neighbours)
+            {
+                if (!burningTiles.Contains(neighbour.tileName) && neighbour.isWalkable)
+                    toIgnite.Add(neighbour.tileName);
+            }
+        }
+
+        foreach (string tile in toIgnite)
+            IgniteTile(tile);
+    }
+
+    public void IgniteTile(string tileName)
+    {
+        if (burningTiles.Contains(tileName)) return;
+
+        GameObject tileObj = GameObject.Find(tileName);
+        if (tileObj == null) return;
+
+        // Spawn fire sprite on top of the tile
+        if (fireSpritePrefab != null)
+        {
+            Renderer r = tileObj.GetComponent<Renderer>();
+            Vector3 spawnPos = r != null ? r.bounds.center : tileObj.transform.position;
+
+            // Slightly in front so it renders on top
+            spawnPos.z -= 0.1f;
+
+            GameObject fire = Instantiate(fireSpritePrefab, spawnPos, Quaternion.identity);
+            fire.transform.SetParent(tileObj.transform);
+            spawnedFires[tileName] = fire;
+        }
 
         burningTiles.Add(tileName);
-        Debug.Log($"Fire on: {tileName}");
+        Debug.Log($"Fire spread to: {tileName}");
+    }
+
+    public void IgniteTileByName(string tileName) => IgniteTile(tileName);
+
+    public void ExtinguishTile(string tileName)
+    {
+        if (!burningTiles.Contains(tileName)) return;
+
+        // Destroy fire sprite
+        if (spawnedFires.ContainsKey(tileName))
+        {
+            Destroy(spawnedFires[tileName]);
+            spawnedFires.Remove(tileName);
+        }
+
+        burningTiles.Remove(tileName);
+        Debug.Log($"Fire extinguished at: {tileName}");
     }
 
     public void ExtinguishAllFire()
     {
-        foreach (string tileName in burningTiles)
-        {
-            TileData tile = GridManager.Instance.GetTile(tileName);
-            if (tile != null)
-            {
-                MeshRenderer r = tile.GetComponent<MeshRenderer>();
-                if (r != null) r.material = defaultMaterial;
-            }
-        }
-
-        burningTiles.Clear();
-        spreadQueue.Clear();
-        fireActive = false;
-        firstSpread = true;
-        Debug.Log("All fire extinguished!");
+        List<string> tiles = new List<string>(burningTiles);
+        foreach (string tile in tiles)
+            ExtinguishTile(tile);
     }
 
-    public bool IsFireActive() => fireActive;
+    public bool IsFireActive() => burningTiles.Count > 0;
     public bool IsTileOnFire(string tileName) => burningTiles.Contains(tileName);
     public HashSet<string> GetBurningTiles() => new HashSet<string>(burningTiles);
 }

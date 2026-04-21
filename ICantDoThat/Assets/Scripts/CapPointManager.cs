@@ -30,18 +30,24 @@ public class CapPointManager : MonoBehaviour
     }
 
     // Called by CharacterMovement every time a crew member steps on a tile
+    // Scientist instant-destroys; others use the 4-step system in CharacterMovement
     public void CheckCapPoint(string tileName)
     {
         if (capPointTiles.Contains(tileName) && !destroyedCapPoints.Contains(tileName))
-            DestroyCapPoint(tileName);
+        {
+            // Only the Scientist triggers instant destroy via here
+            // Non-scientists call DestroyCapPoint directly after their 4-step countdown
+        }
     }
-    
-    private void DestroyCapPoint(string tileName)
+
+    // Now public so CharacterMovement and AIBrain can call it directly
+    public void DestroyCapPoint(string tileName)
     {
+        if (destroyedCapPoints.Contains(tileName)) return;
+
         destroyedCapPoints.Add(tileName);
         Debug.Log($"Cap point {tileName} destroyed! {GetActiveCount()} remaining.");
 
-        // Swap material to destroyed
         TileData tile = GridManager.Instance.GetTile(tileName);
         if (tile != null && destroyedMaterial != null)
         {
@@ -49,7 +55,6 @@ public class CapPointManager : MonoBehaviour
             if (r != null) r.material = destroyedMaterial;
         }
 
-        // If all cap points gone — AI wins
         if (GetActiveCount() == 0)
         {
             Debug.Log("All cap points destroyed!");
@@ -57,10 +62,9 @@ public class CapPointManager : MonoBehaviour
         }
     }
 
-    // Called each turn end to give player energy
     public int GenerateEnergy()
     {
-        int energy = GetActiveCount(); // 1 energy per active cap point
+        int energy = GetActiveCount();
         Debug.Log($"Cap points generated {energy} energy.");
         return energy;
     }

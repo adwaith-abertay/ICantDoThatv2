@@ -15,10 +15,21 @@ public class CharacterMovement : MonoBehaviour
     [Header("Vent Settings")]
     public bool canTravelThroughVents = false;
 
+    [Header("Role Settings")]
+    public bool isScientist = false;
+    public bool hasSoldierExtraLife = false;
+
     private string currentTile;
     private bool isMoving = false;
     private bool isFeared = false;
+    private bool isGreaterFeared = false;
     private float lockedZ;
+    private bool extraLifeUsed = false;
+    private bool killedAlienThisStep = false;
+    private int stepsUsedThisTurn = 0; // ← NEW
+
+    private string capInProgress = "";
+    private int capMovesRemaining = 0;
 
     private void Start()
     {
@@ -33,6 +44,7 @@ public class CharacterMovement : MonoBehaviour
         }
 
         TileStatusManager.Instance.UpdateTile(currentTile, gameObject);
+        CollectibleManager.Instance.TryPickup(gameObject.tag, currentTile);
     }
 
     public void MoveToTarget()
@@ -47,12 +59,61 @@ public class CharacterMovement : MonoBehaviour
             StartCoroutine(MoveAlongPath(blockedTiles));
     }
 
-    private IEnumerator MoveAlongPath(HashSet<string> blockedTiles = null)
+    // ← NEW overload for Leg 2 with step limit
+    public void MoveToTarget(HashSet<string> blockedTiles, int overrideSteps)
     {
-        isMoving = true;
+        if (!isMoving)
+            StartCoroutine(MoveAlongPath(blockedTiles, overrideSteps));
+    }
 
-        int stepsAllowed = isFeared ? maxSteps / 2 : maxSteps;
+    private IEnumerator MoveAlongPath(HashSet<string> blockedTiles = null, int overrideSteps = -1)
+    {
+        if (this == null || gameObject == null) yield break;
+
+        isMoving = true;
+        stepsUsedThisTurn = 0; // ← NEW reset each move
+
+        // ← NEW: use overrideSteps if provided, otherwise normal logic
+        int stepsAllowed = overrideSteps > 0 ? overrideSteps
+                         : isGreaterFeared ? 1
+                         : isFeared ? maxSteps / 2
+                         : maxSteps;
         isFeared = false;
+        isGreaterFeared = false;
+
+        int stepsRemaining = stepsAllowed;
+
+        // Mid-cap destruction — spend steps first
+        if (!isScientist && !string.IsNullOrEmpty(capInProgress) && capMovesRemaining > 0)
+        {
+            if (this == null) { isMoving = false; yield break; }
+
+            int movesSpent = Mathf.Min(stepsRemaining, capMovesRemaining);
+            capMovesRemaining -= movesSpent;
+            stepsRemaining -= movesSpent;
+            stepsUsedThisTurn += movesSpent; // ← NEW
+
+            Debug.Log($"{gameObject.tag} spending {movesSpent} moves on cap {capInProgress} — {capMovesRemaining} moves left.");
+            yield return new WaitForSeconds(movesSpent * (1f / moveSpeed));
+
+            if (this == null) { isMoving = false; yield break; }
+
+            if (capMovesRemaining <= 0)
+            {
+                CapPointManager.Instance.DestroyCapPoint(capInProgress);
+                Debug.Log($"{gameObject.tag} destroyed cap point {capInProgress}!");
+                capInProgress = "";
+                capMovesRemaining = 0;
+            }
+
+            if (stepsRemaining <= 0 || capMovesRemaining > 0)
+            {
+                isMoving = false;
+                yield break;
+            }
+        }
+
+        if (this == null) { isMoving = false; yield break; }
 
         List<TileData> path = Pathfinder.Instance.FindPath(currentTile, targetTile, blockedTiles, canTravelThroughVents);
 
@@ -63,12 +124,52 @@ public class CharacterMovement : MonoBehaviour
             yield break;
         }
 
-        int stepsToTake = Mathf.Min(stepsAllowed, path.Count - 1);
+        int stepsToTake = Mathf.Min(stepsRemaining, path.Count - 1);
 
         for (int i = 1; i <= stepsToTake; i++)
         {
+            if (this == null || gameObject == null) { isMoving = false; yield break; }
+
+            killedAlienThisStep = false;
             yield return StartCoroutine(MoveToTile(path[i]));
+
+            if (this == null || gameObject == null) { isMoving = false; yield break; }
+
+            stepsUsedThisTurn++; // ← NEW
+
+            // Alien killed this step — stop cleanly
+            if (killedAlienThisStep)
+            {
+                isMoving = false;
+                yield break;
+            }
+
+            // Cap destruction mid-move — spend remaining steps on it and stop
+            if (!isScientist && !string.IsNullOrEmpty(capInProgress) && capMovesRemaining > 0)
+            {
+                int stepsLeft = stepsToTake - i;
+                int movesSpent = Mathf.Min(stepsLeft, capMovesRemaining);
+                capMovesRemaining -= movesSpent;
+                stepsUsedThisTurn += movesSpent; // ← NEW
+
+                Debug.Log($"{gameObject.tag} using {movesSpent} remaining moves on cap — {capMovesRemaining} left.");
+                yield return new WaitForSeconds(movesSpent * (1f / moveSpeed));
+
+                if (this == null) { isMoving = false; yield break; }
+
+                if (capMovesRemaining <= 0)
+                {
+                    CapPointManager.Instance.DestroyCapPoint(capInProgress);
+                    Debug.Log($"{gameObject.tag} destroyed cap point {capInProgress}!");
+                    capInProgress = "";
+                    capMovesRemaining = 0;
+                }
+
+                break;
+            }
         }
+
+        if (this == null || gameObject == null) { isMoving = false; yield break; }
 
         if (currentTile == GameManager.Instance.GetMainSwitchTile())
             GameManager.Instance.CrewWins(gameObject.tag);
@@ -78,6 +179,8 @@ public class CharacterMovement : MonoBehaviour
 
     private IEnumerator MoveToTile(TileData tile)
     {
+        if (this == null || gameObject == null) yield break;
+
         Vector3 startPos = transform.position;
         Vector3 center = GetTileCenter(tile.gameObject);
         Vector3 endPos = new Vector3(center.x, center.y, lockedZ);
@@ -87,15 +190,60 @@ public class CharacterMovement : MonoBehaviour
 
         while (elapsed < duration)
         {
+            if (this == null || gameObject == null) yield break;
             transform.position = Vector3.Lerp(startPos, endPos, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
+        if (this == null || gameObject == null) yield break;
+
         transform.position = endPos;
         currentTile = tile.tileName;
 
         TileStatusManager.Instance.UpdateTile(currentTile, gameObject);
+        CollectibleManager.Instance.TryPickup(gameObject.tag, currentTile);
+
+        if (CollectibleManager.Instance.HasCollectible(gameObject.tag, CollectibleType.FireExtinguisher)
+            && FireSpread.Instance.IsTileOnFire(currentTile))
+        {
+            FireSpread.Instance.ExtinguishTile(currentTile);
+            Debug.Log($"{gameObject.tag} extinguished fire at {currentTile}!");
+        }
+
+        // Alien collision check
+        if (Alien.Instance != null && Alien.Instance.IsReleased() &&
+            currentTile == Alien.Instance.GetCurrentTile())
+        {
+            if (CollectibleManager.Instance.HasCollectible(gameObject.tag, CollectibleType.Axe))
+            {
+                Debug.Log($"{gameObject.tag} killed the Alien with the Axe at {currentTile}!");
+                Alien.Instance.gameObject.SetActive(false);
+                killedAlienThisStep = true;
+            }
+            else
+            {
+                Debug.Log($"{gameObject.tag} walked into the Alien without an Axe and died!");
+                GameManager.Instance.RemoveCrewMember(this);
+                yield break;
+            }
+        }
+
+        if (!killedAlienThisStep && CapPointManager.Instance.IsCapPoint(currentTile))
+        {
+            if (isScientist)
+            {
+                CapPointManager.Instance.DestroyCapPoint(currentTile);
+                Debug.Log($"Scientist instantly destroyed cap point at {currentTile}!");
+            }
+            else if (capInProgress != currentTile)
+            {
+                capInProgress = currentTile;
+                capMovesRemaining = 4;
+                Debug.Log($"{gameObject.tag} started destroying cap {currentTile} — needs 4 movement tiles.");
+            }
+        }
+
         CapPointManager.Instance.CheckCapPoint(currentTile);
 
         if (currentTile == PlayerActionManager.Instance.GetO2Tile())
@@ -105,6 +253,16 @@ public class CharacterMovement : MonoBehaviour
         }
 
         Debug.Log($"{gameObject.tag} stepped to: {currentTile}");
+    }
+
+    public bool UseExtraLife()
+    {
+        if (hasSoldierExtraLife && !extraLifeUsed)
+        {
+            extraLifeUsed = true;
+            return true;
+        }
+        return false;
     }
 
     public static void ApplyFearToTag(string tag)
@@ -120,7 +278,14 @@ public class CharacterMovement : MonoBehaviour
     public void ApplyFear()
     {
         isFeared = true;
-        Debug.Log($"{gameObject.tag} is feared! Steps reduced to {maxSteps / 2} next move.");
+        Debug.Log($"{gameObject.tag} is feared! Steps reduced next move.");
+    }
+
+    public void ApplyGreaterFear()
+    {
+        isFeared = true;
+        isGreaterFeared = true;
+        Debug.Log($"{gameObject.tag} is GREATER FEARED! Steps reduced to 1.");
     }
 
     private Vector3 GetTileCenter(GameObject tileObj)
@@ -133,4 +298,7 @@ public class CharacterMovement : MonoBehaviour
     public string GetCurrentTile() => currentTile;
     public void SetTarget(string tile) => targetTile = tile;
     public bool CanUseVents() => canTravelThroughVents;
+    public bool IsMoving() => isMoving;
+    public int GetMaxSteps() => maxSteps;                          // ← NEW
+    public int GetStepsUsedThisTurn() => stepsUsedThisTurn;        // ← NEW
 }
