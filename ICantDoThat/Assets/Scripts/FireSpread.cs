@@ -7,13 +7,20 @@ public class FireSpread : MonoBehaviour
 
     [Header("Fire Settings")]
     public string startingFireTile;
-    public GameObject fireSpritePrefab; // Drag your fire 2D sprite prefab here
+
+    [Header("Spawn Depth")]
+    public float effectSpawnZ = -13.5f;
+
+    public GameObject firePrefab;
+    public GameObject foamPrefab;
 
     private HashSet<string> burningTiles = new HashSet<string>();
+    private HashSet<string> foamedTiles = new HashSet<string>();
     private Dictionary<string, GameObject> spawnedFires = new Dictionary<string, GameObject>();
+    private Dictionary<string, GameObject> spawnedFoam = new Dictionary<string, GameObject>();
+    private bool fireSystemBroken = false;
 
     private void Awake() => Instance = this;
-
     private void Start() { }
 
     public void StartFire()
@@ -28,6 +35,12 @@ public class FireSpread : MonoBehaviour
 
     public void SpreadFireTurn()
     {
+        if (fireSystemBroken)
+        {
+            Debug.Log("Fire system broken — no spreading this turn.");
+            return;
+        }
+
         HashSet<string> toIgnite = new HashSet<string>();
 
         foreach (string burning in burningTiles)
@@ -35,8 +48,10 @@ public class FireSpread : MonoBehaviour
             List<TileData> neighbours = GridManager.Instance.GetAllNeighbours(burning);
             foreach (TileData neighbour in neighbours)
             {
-                if (!burningTiles.Contains(neighbour.tileName) && neighbour.isWalkable)
-                    toIgnite.Add(neighbour.tileName);
+                if (foamedTiles.Contains(neighbour.tileName)) continue;
+                if (burningTiles.Contains(neighbour.tileName)) continue;
+                if (!neighbour.isWalkable) continue;
+                toIgnite.Add(neighbour.tileName);
             }
         }
 
@@ -47,22 +62,25 @@ public class FireSpread : MonoBehaviour
     public void IgniteTile(string tileName)
     {
         if (burningTiles.Contains(tileName)) return;
+        if (foamedTiles.Contains(tileName)) return;
 
         GameObject tileObj = GameObject.Find(tileName);
-        if (tileObj == null) return;
-
-        // Spawn fire sprite on top of the tile
-        if (fireSpritePrefab != null)
+        if (tileObj == null)
         {
-            Renderer r = tileObj.GetComponent<Renderer>();
-            Vector3 spawnPos = r != null ? r.bounds.center : tileObj.transform.position;
+            Debug.LogError($"IgniteTile: Could not find tile '{tileName}'");
+            return;
+        }
 
-            // Slightly in front so it renders on top
-            spawnPos.z -= 0.1f;
-
-            GameObject fire = Instantiate(fireSpritePrefab, spawnPos, Quaternion.identity);
-            fire.transform.SetParent(tileObj.transform);
+        if (firePrefab != null)
+        {
+            Vector3 spawnPos = GetSpawnPosition(tileObj);
+            GameObject fire = Instantiate(firePrefab, spawnPos, Quaternion.identity);
             spawnedFires[tileName] = fire;
+            Debug.Log($"Fire spawned at {spawnPos}");
+        }
+        else
+        {
+            Debug.LogError("firePrefab is NULL — drag it into the Inspector!");
         }
 
         burningTiles.Add(tileName);
@@ -75,7 +93,7 @@ public class FireSpread : MonoBehaviour
     {
         if (!burningTiles.Contains(tileName)) return;
 
-        // Destroy fire sprite
+        // Remove fire visual
         if (spawnedFires.ContainsKey(tileName))
         {
             Destroy(spawnedFires[tileName]);
@@ -83,7 +101,30 @@ public class FireSpread : MonoBehaviour
         }
 
         burningTiles.Remove(tileName);
-        Debug.Log($"Fire extinguished at: {tileName}");
+
+        // Mark as foamed — permanently fireproof
+        foamedTiles.Add(tileName);
+
+        // Spawn foam visual
+        if (foamPrefab != null)
+        {
+            GameObject tileObj = GameObject.Find(tileName);
+            if (tileObj != null)
+            {
+                Vector3 spawnPos = GetSpawnPosition(tileObj);
+                GameObject foam = Instantiate(foamPrefab, spawnPos, Quaternion.identity);
+                spawnedFoam[tileName] = foam;
+            }
+        }
+
+        Debug.Log($"Fire extinguished at {tileName} — tile is now foamed and fireproof!");
+
+        // If start tile is extinguished, fire system breaks
+        if (tileName == startingFireTile)
+        {
+            fireSystemBroken = true;
+            Debug.Log("Start fire tile extinguished — fire system broken! No more spreading.");
+        }
     }
 
     public void ExtinguishAllFire()
@@ -93,7 +134,33 @@ public class FireSpread : MonoBehaviour
             ExtinguishTile(tile);
     }
 
+    // Extinguisher holders and Robot are immune to fire damage
+    public bool ShouldTakeFirDamage(GameObject character)
+    {
+        if (character == null) return false;
+
+        // Robot is always immune
+        if (character.GetComponent<Robot>() != null) return false;
+
+        // Extinguisher holder is immune
+        CharacterMovement cm = character.GetComponent<CharacterMovement>();
+        if (cm != null && CollectibleManager.Instance.HasCollectible(
+            character.tag, CollectibleType.FireExtinguisher)) return false;
+
+        return true;
+    }
+
+    // Uses tile's actual transform Z so particle systems render at the correct depth
+    private Vector3 GetSpawnPosition(GameObject tileObj)
+    {
+        Renderer r = tileObj.GetComponent<Renderer>();
+        Vector3 center = r != null ? r.bounds.center : tileObj.transform.position;
+        return new Vector3(center.x, center.y-1.2f, -13.5f);
+    }
+
     public bool IsFireActive() => burningTiles.Count > 0;
     public bool IsTileOnFire(string tileName) => burningTiles.Contains(tileName);
+    public bool IsTileFoamed(string tileName) => foamedTiles.Contains(tileName);
+    public bool IsFireSystemBroken() => fireSystemBroken;
     public HashSet<string> GetBurningTiles() => new HashSet<string>(burningTiles);
 }

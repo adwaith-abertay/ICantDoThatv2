@@ -35575,7 +35575,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingFireTile: M19
-  fireSpritePrefab: {fileID: 1240134392771559018, guid: bb62b8d72965d8a42a7e95a279ce734d, type: 3}
+  effectSpawnZ: -13.14
+  firePrefab: {fileID: 2050728308861580717, guid: af706a682acd0cc44b81fd32f60e4651, type: 3}
+  foamPrefab: {fileID: 8151333184376875840, guid: d05a96815e7be814d97d320495329132, type: 3}
 --- !u!1 &1556937981
 GameObject:
   m_ObjectHideFlags: 0

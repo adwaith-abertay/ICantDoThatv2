@@ -176,7 +176,8 @@ public class GameManager : MonoBehaviour
         {
             if (crew == null || crew.gameObject == null) continue;
 
-            if (FireSpread.Instance.IsTileOnFire(crew.GetCurrentTile()))
+            if (FireSpread.Instance.IsTileOnFire(crew.GetCurrentTile())
+                && FireSpread.Instance.ShouldTakeFirDamage(crew.gameObject))
             {
                 Debug.Log($"{crew.gameObject.tag} burned to death!");
                 RemoveCrewMember(crew);
@@ -184,15 +185,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        // Also check Robot for fire death
-        if (Robot.Instance != null && Robot.Instance.gameObject.activeInHierarchy)
-        {
-            if (FireSpread.Instance.IsTileOnFire(Robot.Instance.GetCurrentTile()))
-            {
-                Debug.Log("Robot burned to death!");
-                Destroy(Robot.Instance.gameObject);
-            }
-        }
+        // Robot is immune — skip fire death check for it entirely
     }
 
     public bool IsO2Triggered() => o2Triggered;
