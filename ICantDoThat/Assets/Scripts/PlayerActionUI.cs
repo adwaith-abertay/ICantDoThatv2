@@ -162,8 +162,8 @@ public class PlayerActionUI : MonoBehaviour
         unfreezeAlienBtn.interactable = energy >= 5 && !alienReleased;
         hackRobotBtn.interactable     = energy >= Robot.Instance.hackCost && !robotHacked;
 
-        startFireBtn.interactable = energy >= 10 && !FireSpread.Instance.IsFireActive();
-        cutO2Btn.interactable     = energy >= 15 && !o2Active;
+        startFireBtn.interactable = energy >= 4 && !FireSpread.Instance.IsFireActive();
+        cutO2Btn.interactable     = energy >= 8 && !o2Active;
         endTurnBtn.interactable   = true;
 
         // Highlight active mode button

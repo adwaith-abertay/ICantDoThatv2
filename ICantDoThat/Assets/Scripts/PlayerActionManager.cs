@@ -66,10 +66,10 @@ public class PlayerActionManager : MonoBehaviour
 
     public void ActionStartFire()
     {
-        if (currentEnergy < 10) return;
+        if (currentEnergy < 4) return;
 
         FireSpread.Instance.StartFire();
-        currentEnergy -= 10;
+        currentEnergy -= 4;
         Debug.Log($"Fire started! Energy left: {currentEnergy}");
 
         PlayerActionUI.Instance.RefreshButtons();
@@ -79,10 +79,10 @@ public class PlayerActionManager : MonoBehaviour
 
     public void ActionCutO2()
     {
-        if (currentEnergy < 15 || GameManager.Instance.IsO2Triggered()) return;
+        if (currentEnergy < 8 || GameManager.Instance.IsO2Triggered()) return;
 
         GameManager.Instance.TriggerO2();
-        currentEnergy -= 15;
+        currentEnergy -= 8;
         Debug.Log($"O2 cut! Energy left: {currentEnergy}");
 
         PlayerActionUI.Instance.RefreshButtons();

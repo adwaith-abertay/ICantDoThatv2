@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     private List<CharacterMovement> crewMembers = new List<CharacterMovement>();
     private int o2TurnsRemaining = -1;
     private bool o2Triggered = false;
+    private bool gameOver = false;
+    private bool mainSwitchActive = true;
+    public bool IsMainSwitchActive() => mainSwitchActive;
 
     private void Awake() => Instance = this;
 
@@ -35,7 +38,15 @@ public class GameManager : MonoBehaviour
     public void EndPlayerTurn()
     {
         if (currentPhase != TurnPhase.PlayerTurn) return;
+        if (gameOver) return;
         StartCoroutine(RunTurnCycle());
+    }
+
+    public void DisableMainSwitch()
+    {
+        mainSwitchActive = false;
+        Debug.Log("Main switch disabled!");
+        CrewWins("Main switch turned off!");
     }
 
     private IEnumerator RunTurnCycle()
@@ -55,7 +66,8 @@ public class GameManager : MonoBehaviour
 
             if (o2TurnsRemaining <= 0)
             {
-                AIWins("O2 ran out!");
+                // O2 ran out — player (AI of the ship) wins
+                PlayerWins("O2 ran out!");
                 yield break;
             }
         }
@@ -66,6 +78,7 @@ public class GameManager : MonoBehaviour
         FireSpread.Instance.SpreadFireTurn();
         yield return new WaitForSeconds(0.5f);
         CheckFireDeaths();
+        if (gameOver) yield break;
 
         // --- Alien Phase ---
         currentPhase = TurnPhase.AlienPhase;
@@ -73,14 +86,19 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("--- Alien Phase ---");
             yield return StartCoroutine(Alien.Instance.TakeTurn());
+            if (gameOver) yield break;
         }
 
         // --- Crew Turn ---
         currentPhase = TurnPhase.CrewTurn;
         Debug.Log("--- Crew Turn ---");
         yield return StartCoroutine(AIBrain.Instance.RunCrewActions());
+        if (gameOver) yield break;
 
-        // Robot takes its turn after crew      
+        // Robot takes its turn after crew
+        if (Robot.Instance != null && Robot.Instance.gameObject.activeInHierarchy)
+            yield return StartCoroutine(Robot.Instance.TakeTurn());
+        if (gameOver) yield break;
 
         // Generate energy for next player turn
         PlayerActionManager.Instance.GenerateEnergy();
@@ -127,19 +145,26 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Crew member eliminated! {crewMembers.Count} remaining.");
 
+        // All crew dead — player (AI of the ship) wins
         if (crewMembers.Count == 0)
-            AIWins("All crew eliminated!");
+            PlayerWins("All crew eliminated!");
     }
 
+    // Crew reached main switch OR all cap points destroyed — crew wins
     public void CrewWins(string role)
     {
-        Debug.Log($"CREW WINS! {role} reached the main switch!");
+        if (gameOver) return;
+        gameOver = true;
+        Debug.Log($"CREW WINS! {role}");
         SceneManager.LoadScene("CrewWinScene");
     }
 
-    public void AIWins(string reason)
+    // All crew dead or O2 out — you (the player) win
+    public void PlayerWins(string reason)
     {
-        Debug.Log($"AI WINS! {reason}");
+        if (gameOver) return;
+        gameOver = true;
+        Debug.Log($"YOU WIN! {reason}");
         SceneManager.LoadScene("AIWinScene");
     }
 
@@ -155,6 +180,7 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log($"{crew.gameObject.tag} burned to death!");
                 RemoveCrewMember(crew);
+                if (gameOver) return;
             }
         }
 
@@ -172,6 +198,7 @@ public class GameManager : MonoBehaviour
     public bool IsO2Triggered() => o2Triggered;
     public int GetO2Turns() => o2TurnsRemaining;
     public string GetMainSwitchTile() => mainSwitchTile;
+    public bool IsGameOver() => gameOver;
 
     public List<CharacterMovement> GetCrewMembers()
     {

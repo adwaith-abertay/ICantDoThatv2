@@ -172,7 +172,7 @@ public class CharacterMovement : MonoBehaviour
         if (this == null || gameObject == null) { isMoving = false; yield break; }
 
         if (currentTile == GameManager.Instance.GetMainSwitchTile())
-            GameManager.Instance.CrewWins(gameObject.tag);
+                GameManager.Instance.DisableMainSwitch();
 
         isMoving = false;
     }

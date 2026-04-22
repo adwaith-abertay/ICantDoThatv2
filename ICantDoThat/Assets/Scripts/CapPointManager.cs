@@ -58,14 +58,25 @@ public class CapPointManager : MonoBehaviour
         if (GetActiveCount() == 0)
         {
             Debug.Log("All cap points destroyed!");
-            GameManager.Instance.AIWins("All cap points destroyed!");
+            GameManager.Instance.CrewWins("All cap points destroyed!");
         }
     }
 
     public int GenerateEnergy()
     {
         int energy = GetActiveCount();
-        Debug.Log($"Cap points generated {energy} energy.");
+
+        // Main switch still active — adds 1 extra energy per turn
+        if (GameManager.Instance.IsMainSwitchActive())
+        {
+            energy += 1;
+            Debug.Log($"Cap points: {GetActiveCount()} + 1 (main switch active) = {energy} energy.");
+        }
+        else
+        {
+            Debug.Log($"Cap points generated {energy} energy. (main switch disabled)");
+        }
+
         return energy;
     }
 
