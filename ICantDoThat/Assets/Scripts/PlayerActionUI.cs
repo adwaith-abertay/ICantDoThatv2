@@ -28,6 +28,7 @@ public class PlayerActionUI : MonoBehaviour
     public Button startFireBtn;
     public Button cutO2Btn;
     public Button endTurnBtn;
+    public Button flushPodBtn;
 
     [Header("Mode Indicator")]
     public TextMeshProUGUI activeModeLabel;
@@ -59,6 +60,12 @@ public class PlayerActionUI : MonoBehaviour
             CancelMode();
             DoorManager.Instance.OnTurnEnd();
             GameManager.Instance.EndPlayerTurn();
+        });
+
+        flushPodBtn.onClick.AddListener(() =>
+        {
+            AirlockManager.Instance.FlushCrewInSpace();
+            RefreshButtons();
         });
 
         StartCoroutine(InitButtons());
@@ -164,6 +171,7 @@ public class PlayerActionUI : MonoBehaviour
 
         startFireBtn.interactable = energy >= 4 && !FireSpread.Instance.IsFireActive();
         cutO2Btn.interactable     = energy >= 8 && !o2Active;
+        flushPodBtn.interactable = energy >= 8 && AirlockManager.Instance.IsAnyoneInSpace();
         endTurnBtn.interactable   = true;
 
         // Highlight active mode button

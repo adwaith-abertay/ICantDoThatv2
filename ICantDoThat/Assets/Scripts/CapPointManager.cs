@@ -55,11 +55,7 @@ public class CapPointManager : MonoBehaviour
             if (r != null) r.material = destroyedMaterial;
         }
 
-        if (GetActiveCount() == 0)
-        {
-            Debug.Log("All cap points destroyed!");
-            GameManager.Instance.CrewWins("All cap points destroyed!");
-        }
+        Debug.Log(GetActiveCount() == 0 ? "All cap points destroyed — crew still needs the main switch!" : "");      
     }
 
     public int GenerateEnergy()

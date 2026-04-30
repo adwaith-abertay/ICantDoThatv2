@@ -26,7 +26,8 @@ public class CharacterMovement : MonoBehaviour
     private float lockedZ;
     private bool extraLifeUsed = false;
     private bool killedAlienThisStep = false;
-    private int stepsUsedThisTurn = 0; // ← NEW
+    private int stepsUsedThisTurn = 0;
+    private bool justReturnedFromSpace = false;
 
     private string capInProgress = "";
     private int capMovesRemaining = 0;
@@ -59,7 +60,6 @@ public class CharacterMovement : MonoBehaviour
             StartCoroutine(MoveAlongPath(blockedTiles));
     }
 
-    // ← NEW overload for Leg 2 with step limit
     public void MoveToTarget(HashSet<string> blockedTiles, int overrideSteps)
     {
         if (!isMoving)
@@ -71,9 +71,8 @@ public class CharacterMovement : MonoBehaviour
         if (this == null || gameObject == null) yield break;
 
         isMoving = true;
-        stepsUsedThisTurn = 0; // ← NEW reset each move
+        stepsUsedThisTurn = 0;
 
-        // ← NEW: use overrideSteps if provided, otherwise normal logic
         int stepsAllowed = overrideSteps > 0 ? overrideSteps
                          : isGreaterFeared ? 1
                          : isFeared ? maxSteps / 2
@@ -83,7 +82,6 @@ public class CharacterMovement : MonoBehaviour
 
         int stepsRemaining = stepsAllowed;
 
-        // Mid-cap destruction — spend steps first
         if (!isScientist && !string.IsNullOrEmpty(capInProgress) && capMovesRemaining > 0)
         {
             if (this == null) { isMoving = false; yield break; }
@@ -91,7 +89,7 @@ public class CharacterMovement : MonoBehaviour
             int movesSpent = Mathf.Min(stepsRemaining, capMovesRemaining);
             capMovesRemaining -= movesSpent;
             stepsRemaining -= movesSpent;
-            stepsUsedThisTurn += movesSpent; // ← NEW
+            stepsUsedThisTurn += movesSpent;
 
             Debug.Log($"{gameObject.tag} spending {movesSpent} moves on cap {capInProgress} — {capMovesRemaining} moves left.");
             yield return new WaitForSeconds(movesSpent * (1f / moveSpeed));
@@ -135,22 +133,27 @@ public class CharacterMovement : MonoBehaviour
 
             if (this == null || gameObject == null) { isMoving = false; yield break; }
 
-            stepsUsedThisTurn++; // ← NEW
+            stepsUsedThisTurn++;
 
-            // Alien killed this step — stop cleanly
             if (killedAlienThisStep)
             {
                 isMoving = false;
                 yield break;
             }
 
-            // Cap destruction mid-move — spend remaining steps on it and stop
+            // ← POD: crew entered pod mid-path — stop moving
+            if (!gameObject.activeSelf)
+            {
+                isMoving = false;
+                yield break;
+            }
+
             if (!isScientist && !string.IsNullOrEmpty(capInProgress) && capMovesRemaining > 0)
             {
                 int stepsLeft = stepsToTake - i;
                 int movesSpent = Mathf.Min(stepsLeft, capMovesRemaining);
                 capMovesRemaining -= movesSpent;
-                stepsUsedThisTurn += movesSpent; // ← NEW
+                stepsUsedThisTurn += movesSpent;
 
                 Debug.Log($"{gameObject.tag} using {movesSpent} remaining moves on cap — {capMovesRemaining} left.");
                 yield return new WaitForSeconds(movesSpent * (1f / moveSpeed));
@@ -172,7 +175,7 @@ public class CharacterMovement : MonoBehaviour
         if (this == null || gameObject == null) { isMoving = false; yield break; }
 
         if (currentTile == GameManager.Instance.GetMainSwitchTile())
-                GameManager.Instance.DisableMainSwitch();
+            GameManager.Instance.DisableMainSwitch();
 
         isMoving = false;
     }
@@ -211,7 +214,6 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log($"{gameObject.tag} extinguished fire at {currentTile}!");
         }
 
-        // Alien collision check
         if (Alien.Instance != null && Alien.Instance.IsReleased() &&
             currentTile == Alien.Instance.GetCurrentTile())
         {
@@ -253,6 +255,32 @@ public class CharacterMovement : MonoBehaviour
         }
 
         Debug.Log($"{gameObject.tag} stepped to: {currentTile}");
+
+        // ← POD: check if a pod is parked on this tile
+        if (justReturnedFromSpace)
+        {
+            justReturnedFromSpace = false; // clear flag after first real step
+        }
+        else
+        {
+            AirlockManager.Instance.OnCrewSteppedOnTile(this, currentTile);
+        }
+    }
+
+    public void TeleportToTile(string tileName)
+    {
+        isMoving = false;
+        justReturnedFromSpace = true; // ← ignore pod on this tile
+
+        GameObject tileObj = GameObject.Find(tileName);
+        if (tileObj != null)
+        {
+            Vector3 center = GetTileCenter(tileObj);
+            transform.position = new Vector3(center.x, center.y, lockedZ);
+        }
+        currentTile = tileName;
+        TileStatusManager.Instance.UpdateTile(currentTile, gameObject);
+        Debug.Log($"{gameObject.tag} teleported to {tileName}");
     }
 
     public bool UseExtraLife()
@@ -299,6 +327,6 @@ public class CharacterMovement : MonoBehaviour
     public void SetTarget(string tile) => targetTile = tile;
     public bool CanUseVents() => canTravelThroughVents;
     public bool IsMoving() => isMoving;
-    public int GetMaxSteps() => maxSteps;                          // ← NEW
-    public int GetStepsUsedThisTurn() => stepsUsedThisTurn;        // ← NEW
+    public int GetMaxSteps() => maxSteps;
+    public int GetStepsUsedThisTurn() => stepsUsedThisTurn;
 }

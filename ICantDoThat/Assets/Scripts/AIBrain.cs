@@ -52,7 +52,7 @@ public IEnumerator RunCrewActions()
         cm.MoveToTarget(isExtinguisher ? null : fireTiles);
 
         CharacterMovement capturedCm = cm;
-        yield return new WaitUntil(() => capturedCm == null || !capturedCm.IsMoving());
+        yield return new WaitUntil(() => capturedCm == null || !capturedCm.gameObject.activeInHierarchy || !capturedCm.IsMoving());
 
         // Leg 2 — Axe holder killed Alien, continue with remaining steps
         if (cm != null && isAxeHunter &&
@@ -75,7 +75,7 @@ public IEnumerator RunCrewActions()
                     cm.MoveToTarget(fireTiles, stepsLeft);
 
                     CharacterMovement capturedCm2 = cm;
-                    yield return new WaitUntil(() => capturedCm2 == null || !capturedCm2.IsMoving());
+                    yield return new WaitUntil(() => capturedCm2 == null || !capturedCm2.gameObject.activeInHierarchy || !capturedCm2.IsMoving());
                 }
             }
         }
@@ -122,7 +122,7 @@ public IEnumerator RunCrewActions()
                     cm.MoveToTarget(null, 1); // 1 step retreat, no blocked tiles
 
                     CharacterMovement capturedRetreat = cm;
-                    yield return new WaitUntil(() => capturedRetreat == null || !capturedRetreat.IsMoving());
+                    yield return new WaitUntil(() => capturedRetreat == null || !capturedRetreat.gameObject.activeInHierarchy || !capturedRetreat.IsMoving());
                 }
                 else
                 {
@@ -132,9 +132,7 @@ public IEnumerator RunCrewActions()
         }
     }
 
-    // Robot takes its turn last
-    if (Robot.Instance != null && Robot.Instance.gameObject.activeInHierarchy)
-        yield return StartCoroutine(Robot.Instance.TakeTurn());
+    
 }
 
     private Dictionary<CharacterMovement, string> AssignDestinations(

@@ -31,6 +31,14 @@ public class PlayerActionManager : MonoBehaviour
         AirlockManager.Instance.RefreshButtons();
     }
 
+    public int PredictNextTurnEnergy()
+    {
+        int gained = CapPointManager.Instance.GetActiveCount();
+        if (GameManager.Instance.IsMainSwitchActive()) gained += 1;
+        int predicted = Mathf.Min(currentEnergy + gained, 15);
+        return predicted;
+    }
+
     public void ActionFear(string tag)
     {
         if (currentEnergy < 1 || fearedThisTurn.Contains(tag)) return;

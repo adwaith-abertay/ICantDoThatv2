@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentPhase != TurnPhase.PlayerTurn) return;
         if (gameOver) return;
+        //AirlockManager.Instance.ReturnCrewFromSpace(); // ← return any crew in space
         StartCoroutine(RunTurnCycle());
     }
 
@@ -92,6 +93,11 @@ public class GameManager : MonoBehaviour
         // --- Crew Turn ---
         currentPhase = TurnPhase.CrewTurn;
         Debug.Log("--- Crew Turn ---");
+
+        // ← Return crew from space RIGHT before crew act, so AIBrain can find them
+        AirlockManager.Instance.ReturnCrewFromSpace();
+        yield return new WaitForSeconds(0.3f); // small delay so teleport completes visually
+
         yield return StartCoroutine(AIBrain.Instance.RunCrewActions());
         if (gameOver) yield break;
 
