@@ -13,6 +13,9 @@ public class SpawnRandomizer : MonoBehaviour
     public GameObject soldier;
     public GameObject robot;
 
+    [Header("Robot Blocked Spawn Tiles")]
+    public List<string> robotBlockedTiles = new List<string> { "L18", "A30" };
+
     private void Awake()
     {
         if (spawnTiles.Count < 5)
@@ -31,11 +34,27 @@ public class SpawnRandomizer : MonoBehaviour
             shuffled[j] = temp;
         }
 
-        // Assign one unique tile to each character
-        AssignSpawn(captain,   shuffled[0]);
-        AssignSpawn(scientist, shuffled[1]);
-        AssignSpawn(engineer,  shuffled[2]);
-        AssignSpawn(soldier,   shuffled[3]);
+        // If shuffled[4] is blocked for robot, swap it with the first
+        // non-blocked tile that isn't already used by crew (indices 0-3)
+        if (robotBlockedTiles.Contains(shuffled[4]))
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                if (!robotBlockedTiles.Contains(shuffled[i]))
+                {
+                    // Swap robot's tile with this crew tile
+                    string temp = shuffled[4];
+                    shuffled[4] = shuffled[i];
+                    shuffled[i] = temp;
+                    break;
+                }
+            }
+        }
+
+        AssignSpawn(captain,    shuffled[0]);
+        AssignSpawn(scientist,  shuffled[1]);
+        AssignSpawn(engineer,   shuffled[2]);
+        AssignSpawn(soldier,    shuffled[3]);
         AssignRobotSpawn(robot, shuffled[4]);
 
         Debug.Log($"Spawns assigned — Captain:{shuffled[0]} Scientist:{shuffled[1]} Engineer:{shuffled[2]} Soldier:{shuffled[3]} Robot:{shuffled[4]}");

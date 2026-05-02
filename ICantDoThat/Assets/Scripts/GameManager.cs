@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
 
         // --- Crew Turn ---
         currentPhase = TurnPhase.CrewTurn;
+        CrewIconManager.Instance.RevertFearIcons();
         Debug.Log("--- Crew Turn ---");
 
         // ← Return crew from space RIGHT before crew act, so AIBrain can find them

@@ -287,6 +287,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (hasSoldierExtraLife && !extraLifeUsed)
         {
+            CrewIconManager.Instance.SetSoldierLostLife();
             extraLifeUsed = true;
             return true;
         }
@@ -306,6 +307,7 @@ public class CharacterMovement : MonoBehaviour
     public void ApplyFear()
     {
         isFeared = true;
+        CrewIconManager.Instance.SetFeared(gameObject.tag);
         Debug.Log($"{gameObject.tag} is feared! Steps reduced next move.");
     }
 
@@ -313,6 +315,7 @@ public class CharacterMovement : MonoBehaviour
     {
         isFeared = true;
         isGreaterFeared = true;
+        CrewIconManager.Instance.SetFeared(gameObject.tag);
         Debug.Log($"{gameObject.tag} is GREATER FEARED! Steps reduced to 1.");
     }
 

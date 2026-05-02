@@ -43,7 +43,16 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (currentEnergy < 1 || fearedThisTurn.Contains(tag)) return;
 
-        CharacterMovement.ApplyFearToTag(tag);
+        // Robot has its own component — handle separately
+        if (tag == "Robot")
+        {
+            if (Robot.Instance != null) Robot.Instance.ApplyFear();
+        }
+        else
+        {
+            CharacterMovement.ApplyFearToTag(tag);
+        }
+
         fearedThisTurn.Add(tag);
         currentEnergy -= 1;
         Debug.Log($"Fear applied to {tag}. Energy left: {currentEnergy}");
@@ -56,12 +65,19 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (currentEnergy < 3 || fearedThisTurn.Contains(tag)) return;
 
-        // Reduce steps to 1 for this crew member
-        GameObject obj = GameObject.FindWithTag(tag);
-        if (obj != null)
+        // Robot has its own component — handle separately
+        if (tag == "Robot")
         {
-            CharacterMovement cm = obj.GetComponent<CharacterMovement>();
-            if (cm != null) cm.ApplyGreaterFear();
+            if (Robot.Instance != null) Robot.Instance.ApplyGreaterFear();
+        }
+        else
+        {
+            GameObject obj = GameObject.FindWithTag(tag);
+            if (obj != null)
+            {
+                CharacterMovement cm = obj.GetComponent<CharacterMovement>();
+                if (cm != null) cm.ApplyGreaterFear();
+            }
         }
 
         fearedThisTurn.Add(tag);

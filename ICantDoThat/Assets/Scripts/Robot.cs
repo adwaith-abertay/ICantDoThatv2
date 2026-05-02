@@ -18,6 +18,9 @@ public class Robot : MonoBehaviour
     private bool isMoving = false;
     private float lockedZ;
 
+    private bool isFeared = false;
+    private bool isGreaterFeared = false;
+
     private void Awake() => Instance = this;
 
     private void Start()
@@ -34,6 +37,22 @@ public class Robot : MonoBehaviour
         }
     }
 
+    // --- Fear ---
+    public void ApplyFear()
+    {
+        isFeared = true;
+        CrewIconManager.Instance.SetRobotFeared();
+        Debug.Log("Robot is feared! Steps reduced next move.");
+    }
+
+    public void ApplyGreaterFear()
+    {
+        isFeared = true;
+        isGreaterFeared = true;
+        CrewIconManager.Instance.SetRobotFeared();
+        Debug.Log("Robot is GREATER FEARED! Steps reduced to 1.");
+    }
+
     public bool TryHack()
     {
         if (isHacked)
@@ -45,8 +64,9 @@ public class Robot : MonoBehaviour
         if (PlayerActionManager.Instance.GetCurrentEnergy() >= hackCost)
         {
             PlayerActionManager.Instance.SpendEnergy(hackCost);
+            CrewIconManager.Instance.SetRobotHacked();
             isHacked = true;
-            missNextTurn = true; // ADD THIS — skips first turn after hack
+            missNextTurn = true;
             Debug.Log("Robot hacked! Skipping next turn to allow crew to reposition.");
             return true;
         }
@@ -66,18 +86,30 @@ public class Robot : MonoBehaviour
             yield break;
         }
 
+        // Resolve steps allowed this turn
+        int stepsAllowed = isGreaterFeared ? 1
+                         : isFeared ? maxSteps / 2
+                         : maxSteps;
+
+        // Clear fear flags after reading them
+        isFeared = false;
+        isGreaterFeared = false;
+
+        // Revert icon only if not hacked (hacked icon is permanent)
+        if (!isHacked)
+            CrewIconManager.Instance.SetRobotNormal();
+
         isMoving = true;
 
         if (isHacked)
         {
-            // Hacked: hunt nearest crew member like the alien
             CharacterMovement target = GetNearestCrew();
             if (target != null)
             {
                 List<TileData> path = Pathfinder.Instance.FindPath(currentTile, target.GetCurrentTile());
                 if (path != null && path.Count > 1)
                 {
-                    int steps = Mathf.Min(maxSteps, path.Count - 1);
+                    int steps = Mathf.Min(stepsAllowed, path.Count - 1);
                     for (int i = 1; i <= steps; i++)
                     {
                         yield return StartCoroutine(MoveToTile(path[i]));
@@ -94,14 +126,13 @@ public class Robot : MonoBehaviour
         }
         else
         {
-            // Unhacked: acts as normal crew — moves toward nearest destroyable point
             string dest = AIBrain.Instance.GetBestDestination(currentTile, false);
             if (!string.IsNullOrEmpty(dest))
             {
                 List<TileData> path = Pathfinder.Instance.FindPath(currentTile, dest, FireSpread.Instance.GetBurningTiles(), false);
                 if (path != null && path.Count > 1)
                 {
-                    int steps = Mathf.Min(maxSteps, path.Count - 1);
+                    int steps = Mathf.Min(stepsAllowed, path.Count - 1);
                     for (int i = 1; i <= steps; i++)
                         yield return StartCoroutine(MoveToTile(path[i]));
                 }
@@ -117,7 +148,7 @@ public class Robot : MonoBehaviour
         GameObject tileObj = GameObject.Find(tile.tileName);
         Renderer r = tileObj?.GetComponent<Renderer>();
         Vector3 endPos = r != null ? new Vector3(r.bounds.center.x, r.bounds.center.y, lockedZ)
-                                : new Vector3(tileObj.transform.position.x, tileObj.transform.position.y, lockedZ);
+                                   : new Vector3(tileObj.transform.position.x, tileObj.transform.position.y, lockedZ);
 
         float duration = 1f / moveSpeed;
         float elapsed = 0f;
@@ -132,7 +163,6 @@ public class Robot : MonoBehaviour
         transform.position = endPos;
         currentTile = tile.tileName;
 
-        // Cap point — Robot instantly destroys like any other crew member
         if (CapPointManager.Instance.IsCapPoint(currentTile))
         {
             CapPointManager.Instance.DestroyCapPoint(currentTile);
@@ -144,7 +174,6 @@ public class Robot : MonoBehaviour
 
         Debug.Log($"Robot moved to: {currentTile}");
     }
-
 
     private CharacterMovement GetNearestCrew()
     {
