@@ -1,0 +1,54 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/SiidBTN.uss?fileID=7433441132597879392&amp;guid=98695cbda00c0f041b4d7aa57311f474&amp;type=3#SiidBTN" />
+    <ui:VisualElement name="PowerMeterHolder" style="flex-grow: 1; width: auto; height: auto; max-height: 10%; max-width: 50%; background-color: rgba(55, 55, 55, 0.78); min-height: 10%; align-self: stretch; justify-content: center; align-items: center; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; border-left-color: rgb(103, 12, 12); border-right-color: rgb(103, 12, 12); border-top-color: rgb(103, 12, 12); border-bottom-color: rgb(103, 12, 12); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;">
+        <ui:Label text="Computer Operations Capacity" style="align-items: auto; font-size: 32px; -unity-text-align: upper-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; background-color: rgba(255, 0, 0, 0); color: rgb(255, 255, 255); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; border-left-color: rgb(103, 12, 12); border-right-color: rgb(103, 12, 12); border-top-color: rgb(103, 12, 12); border-bottom-color: rgb(103, 12, 12); -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(172, 191, 201); text-shadow: 0 0 0 rgba(0, 0, 0, 0); top: -6%;" />
+        <ui:VisualElement name="PowerMeterBorder" style="flex-grow: 1; height: 100%; max-height: 100%; background-color: rgb(172, 191, 201); width: 100%; min-height: 65%; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; top: -3%;">
+            <ui:VisualElement name="PowerMeterBackground" style="flex-grow: 1; height: auto; max-height: none; background-color: rgb(104, 13, 13); width: auto; min-height: auto; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; flex-direction: row; align-items: auto; justify-content: space-between; align-self: auto; align-content: auto; display: flex; opacity: 1; flex-shrink: 0;">
+                <ui:VisualElement name="PowerMeterValue" style="flex-grow: 1; height: 100%; max-height: 100%; background-color: rgba(255, 0, 0, 0); width: 100%; min-height: auto; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; flex-direction: row; align-items: auto; justify-content: space-around; align-self: auto; align-content: auto; visibility: visible; overflow: visible; max-width: 100%; background-size: 100% 100%; background-repeat: no-repeat no-repeat; background-position-x: left 0; background-position-y: top 0; -unity-slice-type: sliced; -unity-slice-scale: 1px; background-image: url(&quot;project://database/Assets/UI/RedBackground.png?fileID=2800000&amp;guid=23f876ba9d5426d43bb5e90e7af172b0&amp;type=3#RedBackground&quot;); -unity-background-image-tint-color: rgb(255, 0, 0);">
+                    <ui:VisualElement style="flex-grow: 1; border-top-left-radius: 10px; border-bottom-left-radius: 10px;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1;" />
+                    <ui:VisualElement style="flex-grow: 1; border-bottom-right-radius: 10px; border-top-right-radius: 10px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="siidBTNholder" enabled="true" style="flex-grow: 1; left: auto; right: auto; flex-direction: column; flex-wrap: wrap; height: 80%; width: 16%; align-items: auto; padding-top: 0%; padding-right: 0%; padding-bottom: 0%; padding-left: 0%; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; align-self: flex-end; top: -7%; justify-content: center; background-color: rgba(35, 35, 35, 0.78); border-left-color: rgba(117, 0, 0, 0.78); border-right-color: rgba(117, 0, 0, 0.78); border-top-color: rgba(117, 0, 0, 0.78); border-bottom-color: rgba(117, 0, 0, 0.78); border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; bottom: auto; flex-basis: 0%; max-height: 90%; min-height: 92%; opacity: 1; align-content: auto;">
+        <ui:Button text="Sabotage&#10;Oxygen&#10;" enabled="true">
+            <ui:Label text="8&#10;" />
+        </ui:Button>
+        <ui:Button text="Unfreeze &#10;alien&#10;">
+            <ui:Label text="8&#10;" />
+        </ui:Button>
+        <ui:Button text="Open Airlock &#10;with Pod">
+            <ui:Label text="8" />
+        </ui:Button>
+        <ui:Button text="Hack robot">
+            <ui:Label text="6&#10;" />
+        </ui:Button>
+        <ui:Button text="Open airlock">
+            <ui:Label text="6" />
+        </ui:Button>
+        <ui:Button text="Ignite engine">
+            <ui:Label text="4" />
+        </ui:Button>
+        <ui:Button text="Induce &#10;greater fear" enable-rich-text="false">
+            <ui:Label text="3" />
+        </ui:Button>
+        <ui:Button text="Shut door">
+            <ui:Label text="2" />
+        </ui:Button>
+        <ui:Button text="Indude fear&#10;" enabled="true">
+            <ui:Label text="1" />
+        </ui:Button>
+        <ui:Button text="End Turn&#10;" enabled="true">
+            <ui:Label text="1" />
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>
