@@ -1,0 +1,78 @@
+--- MASTER EVENT CHEAT SHEET ---
+
+HOW TO USE:
+Copy and paste the line you need into your game logic.
+Replace "CharacterName" with the person the event is happening to 
+e.g.
+
+"Captain"
+
+"Engineer"
+
+"Scientist"
+
+"Soldier"
+
+"Injured" (Use this specifically for the injured version of the soldier)
+
+"Robot"
+
+"Alien"
+
+The UI scripts system will handle the dice rolls and UI automatically.
+
+--- 1. GENERAL REACTIONS ---
+A crew member gets frightened:
+GameEventManager.OnFrightened?.Invoke(GetRandomReactor());
+
+A crew member gets terrified (Greater Fear):
+GameEventManager.OnTerrified?.Invoke(GetRandomReactor());
+
+A door gets shut:
+GameEventManager.OnDoorShut?.Invoke(GetRandomReactor());
+
+A fire starts:
+GameEventManager.OnFireIgnited?.Invoke(GetRandomReactor());
+
+An airlock opens:
+GameEventManager.OnAirlockOpened?.Invoke(GetRandomReactor());
+
+The robot gets hacked (Switches teams!):
+GameEventManager.OnRobotHacked?.Invoke(GetRandomReactor());
+
+The alien gets released:
+GameEventManager.OnAlienReleased?.Invoke(GetRandomReactor());
+
+The oxygen gets deactivated:
+GameEventManager.OnOxygenDeactivated?.Invoke(GetRandomReactor());
+
+--- 2. CREW ACTIONS ---
+(Pass "CharacterName" here so the person doing the action says their specific Intention line!)
+
+A crew member disables a C.A.P point:
+GameEventManager.OnCapDisabled?.Invoke("CharacterName");
+
+A crew member picks up the axe:
+GameEventManager.OnAxePickedUp?.Invoke("CharacterName");
+
+A crew member picks up the fire extinguisher:
+GameEventManager.OnExtinguisherPickedUp?.Invoke("CharacterName");
+
+--- 3. DEATH TRIGGERS (COMIC + TEXT) ---
+When someone dies, this single line mutes them permanently, plays their comic, and makes a random survivor react.
+
+Killed by the Airlock:
+GameEventManager.OnCharacterDeath?.Invoke("CharacterName", "Airlock", GetRandomReactor());
+
+Killed by Fire:
+GameEventManager.OnCharacterDeath?.Invoke("CharacterName", "Fire", GetRandomReactor());
+
+Killed by the Alien:
+GameEventManager.OnCharacterDeath?.Invoke("CharacterName", "Alien", GetRandomReactor());
+
+Killed by the Hacked Robot:
+GameEventManager.OnCharacterDeath?.Invoke("CharacterName", "Hack", GetRandomReactor());
+
+--- 4. AMBIENCE ---
+When a crew member starts their turn:
+GameEventManager.OnTurnStarted?.Invoke("CharacterName");
