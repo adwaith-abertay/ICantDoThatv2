@@ -23,7 +23,22 @@ public class CollectibleManager : MonoBehaviour
 
     private Dictionary<string, CollectibleType> crewCollectibles = new Dictionary<string, CollectibleType>();
 
-    private void Awake() => Instance = this;
+    private void Awake()
+    {
+        Instance = this;
+
+        // Ensure all icons start hidden
+        foreach (GameObject icon in new GameObject[]
+        {
+            captainAxeIcon, captainExtinguisherIcon,
+            soldierAxeIcon, soldierExtinguisherIcon,
+            engineerAxeIcon, engineerExtinguisherIcon,
+            scientistAxeIcon, scientistExtinguisherIcon
+        })
+        {
+            if (icon != null) icon.SetActive(false);
+        }
+    }
 
     public void TryPickup(string crewTag, string tileName)
     {

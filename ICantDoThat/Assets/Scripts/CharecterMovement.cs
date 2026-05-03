@@ -287,7 +287,6 @@ public class CharacterMovement : MonoBehaviour
     {
         if (hasSoldierExtraLife && !extraLifeUsed)
         {
-            CrewIconManager.Instance.SetSoldierLostLife();
             extraLifeUsed = true;
             return true;
         }

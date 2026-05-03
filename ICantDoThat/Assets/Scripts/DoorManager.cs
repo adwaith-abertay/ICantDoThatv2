@@ -7,6 +7,7 @@ public class DoorData
     public string tileA;
     public string tileB;
     public GameObject doorSprite;
+    // sprites removed — now global on DoorManager
 }
 
 public class DoorManager : MonoBehaviour
@@ -15,6 +16,10 @@ public class DoorManager : MonoBehaviour
 
     [Header("Settings")]
     public int doorCloseCost = 2;
+
+    [Header("Door Sprites (shared by all doors)")]
+    public Sprite doorOpenSprite;
+    public Sprite doorLockedSprite;
 
     [Header("Doors")]
     public List<DoorData> doors = new List<DoorData>();
@@ -31,7 +36,7 @@ public class DoorManager : MonoBehaviour
             if (door.doorSprite != null)
             {
                 door.doorSprite.SetActive(false);
-                SetDoorColor(door, Color.green);
+                SetDoorSprite(door, false);
             }
         }
     }
@@ -51,7 +56,7 @@ public class DoorManager : MonoBehaviour
             if (door.doorSprite != null)
             {
                 door.doorSprite.SetActive(true);
-                SetDoorColor(door, lockedDoors.Contains(door.doorSprite.name) ? Color.red : Color.green);
+                SetDoorSprite(door, lockedDoors.Contains(door.doorSprite.name));
             }
         }
 
@@ -68,7 +73,7 @@ public class DoorManager : MonoBehaviour
         if (lockedDoors.Contains(doorName))
         {
             lockedDoors.Remove(doorName);
-            SetDoorColor(door, Color.green);
+            SetDoorSprite(door, false);
             RestorePassage(door);
             Debug.Log($"{doorName} unlocked.");
         }
@@ -82,7 +87,7 @@ public class DoorManager : MonoBehaviour
 
             PlayerActionManager.Instance.SpendEnergy(doorCloseCost);
             lockedDoors.Add(doorName);
-            SetDoorColor(door, Color.red);
+            SetDoorSprite(door, true);
             BlockPassage(door);
             Debug.Log($"{doorName} locked — passage between {door.tileA} and {door.tileB} blocked.");
         }
@@ -101,11 +106,12 @@ public class DoorManager : MonoBehaviour
             if (lockedDoors.Contains(door.doorSprite.name))
             {
                 door.doorSprite.SetActive(true);
-                SetDoorColor(door, Color.red);
+                SetDoorSprite(door, true);
             }
             else
             {
                 door.doorSprite.SetActive(false);
+                SetDoorSprite(door, false);
             }
         }
     }
@@ -137,6 +143,7 @@ public class DoorManager : MonoBehaviour
             if (door != null)
             {
                 RestorePassage(door);
+                SetDoorSprite(door, false);
                 door.doorSprite.SetActive(false);
             }
         }
@@ -145,10 +152,17 @@ public class DoorManager : MonoBehaviour
         Debug.Log("All doors unlocked for next turn.");
     }
 
-    private void SetDoorColor(DoorData door, Color color)
+    private void SetDoorSprite(DoorData door, bool locked)
     {
         SpriteRenderer sr = door.doorSprite.GetComponent<SpriteRenderer>();
-        if (sr != null) sr.color = color;
+        if (sr == null) return;
+
+        Sprite target = locked ? doorLockedSprite : doorOpenSprite;
+        if (target == null) return;
+
+        Vector3 scale = door.doorSprite.transform.localScale;
+        sr.sprite = target;
+        door.doorSprite.transform.localScale = scale;
     }
 
     private DoorData GetDoor(string doorName)

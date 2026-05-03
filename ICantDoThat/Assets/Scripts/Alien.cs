@@ -14,6 +14,8 @@ public class Alien : MonoBehaviour
     private bool isReleased = false;
     private bool isMoving = false;
     private float lockedZ;
+    public GameObject cryopodclosed;
+    public GameObject cryopodopen;
 
     private void Awake() => Instance = this;
 
@@ -25,8 +27,11 @@ public class Alien : MonoBehaviour
 
     public void Release(string spawnTile)
     {
+        
         isReleased = true;
         currentTile = spawnTile;
+        cryopodclosed.SetActive(false);
+        cryopodopen.SetActive(true);
         gameObject.SetActive(true);
 
         GameObject spawnObj = GameObject.Find(spawnTile);
