@@ -90,9 +90,10 @@ public class DoorManager : MonoBehaviour
             SetDoorSprite(door, true);
             BlockPassage(door);
             Debug.Log($"{doorName} locked — passage between {door.tileA} and {door.tileB} blocked.");
+            UIEventsListener.OnDoorShut?.Invoke();
         }
 
-        PlayerActionUI.Instance.RefreshButtons();
+     
     }
 
     public void OnTurnEnd()

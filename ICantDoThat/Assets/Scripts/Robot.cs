@@ -68,6 +68,7 @@ public class Robot : MonoBehaviour
             isHacked = true;
             missNextTurn = true;
             Debug.Log("Robot hacked! Skipping next turn to allow crew to reposition.");
+            UIEventsListener.OnRobotHacked?.Invoke();
             return true;
         }
 
@@ -100,6 +101,8 @@ public class Robot : MonoBehaviour
             CrewIconManager.Instance.SetRobotNormal();
 
         isMoving = true;
+        if (AudioManager.Instance != null)
+    AudioManager.Instance.PlayRobotFootstep();
 
         if (isHacked)
         {
@@ -118,6 +121,7 @@ public class Robot : MonoBehaviour
                         {
                             Debug.Log($"Hacked Robot killed {crew.gameObject.tag}!");
                             GameManager.Instance.RemoveCrewMember(crew);
+                            UIEventsListener.OnCharacterDeath?.Invoke(crew.gameObject.tag, "Hack");
                             break;
                         }
                     }
@@ -139,6 +143,12 @@ public class Robot : MonoBehaviour
             }
         }
 
+        StopMoving();
+    }
+    private void StopMoving()
+    {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.StopLoop();
         isMoving = false;
     }
 

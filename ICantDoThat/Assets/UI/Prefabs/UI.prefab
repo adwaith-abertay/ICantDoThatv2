@@ -1,0 +1,804 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &525893015658302198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4955170296267007695}
+  - component: {fileID: 2009013248194420951}
+  - component: {fileID: 5288735896015561531}
+  - component: {fileID: 6357752872553807173}
+  - component: {fileID: 7000017857115487363}
+  - component: {fileID: 4634016515692248033}
+  - component: {fileID: 4914642519238843188}
+  m_Layer: 0
+  m_Name: HUDmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4955170296267007695
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525893015658302198}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.3041992, y: -6.342601, z: 4.34786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9181209871756982711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2009013248194420951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525893015658302198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9f0fe46ad9ed64592a594bebe68393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 9072815842123318913}
+  defaultArt: {fileID: 2800000, guid: 13bf2074d23deda4abcaec7320246725, type: 3}
+  hoverArt: {fileID: 2800000, guid: 906ee1ee6d8dd964dbc2183b0da55469, type: 3}
+  clickArt: {fileID: 2800000, guid: 9a42c1e60aa42f64dad627f12328c55b, type: 3}
+  disabledArt: {fileID: 2800000, guid: 611fdab4f9b2efd4396b6b9fbb5e2079, type: 3}
+  powerRequirements:
+  - buttonName: BTN1
+    requiredPower: 1
+  - buttonName: BTN2
+    requiredPower: 2
+  - buttonName: BTN3
+    requiredPower: 3
+  - buttonName: BTN4
+    requiredPower: 4
+  - buttonName: BTN5
+    requiredPower: 6
+  - buttonName: BTN6
+    requiredPower: 6
+  - buttonName: BTN7
+    requiredPower: 8
+  - buttonName: BTN8
+    requiredPower: 8
+  - buttonName: BTN9
+    requiredPower: 8
+  - buttonName: BTN0
+    requiredPower: 0
+--- !u!114 &5288735896015561531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525893015658302198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7df0125d25fce994896f9a27647d02dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiDocument: {fileID: 9072815842123318913}
+  portraitElementName: PortraitDisplay
+  showDevLogs: 0
+  fontSize: 35
+  standardColor: {r: 0.78, g: 0.78, b: 0.78, a: 1}
+  errorColor: {r: 1, g: 0.2, b: 0.2, a: 1}
+  voiceColor: {r: 0, g: 0.9960785, b: 0, a: 1}
+  flavorColor: {r: 1, g: 0.78, b: 0.2, a: 1}
+  devColor: {r: 1, g: 1, b: 1, a: 1}
+  staticScreen: {fileID: 2800000, guid: 608fede85773e1a4ba93f780a6d9f581, type: 3}
+  captNeutral: {fileID: 2800000, guid: 75500e3be843c4047a54cbbf8e3255c3, type: 3}
+  captFearful: {fileID: 0}
+  captHappy: {fileID: 2800000, guid: 65444ccf84c8735448d0799ff760323c, type: 3}
+  captAngry: {fileID: 2800000, guid: a5ef10d4bcb8a3c4f99e2868c0ee2e1f, type: 3}
+  soldierNeutral: {fileID: 2800000, guid: babe34371e1f305478dba431087497b6, type: 3}
+  soldierFearful: {fileID: 2800000, guid: 6f2907c50ffc27740946a75b43e959b5, type: 3}
+  soldierHappy: {fileID: 2800000, guid: f537a4aecc0dd1c408a6745fc7993980, type: 3}
+  soldierAngry: {fileID: 2800000, guid: 150bed7b58db8f14b9453c168be6766a, type: 3}
+  injuredNeutral: {fileID: 2800000, guid: e3e3dc9f9b9570a4a99e0356b190fcd8, type: 3}
+  injuredFearful: {fileID: 2800000, guid: 12d3224a9019bbd4594ceb340f66a017, type: 3}
+  injuredHappy: {fileID: 2800000, guid: 0784fe95813f78b4fa0a03bdbdccfc99, type: 3}
+  injuredAngry: {fileID: 2800000, guid: a60bef3d4b806764c8fbe9e6e05240c2, type: 3}
+  robotNormal: {fileID: 2800000, guid: 054ca048a1fe5964dae8725ef65af8dd, type: 3}
+  robotHacked: {fileID: 2800000, guid: 98c43d2779edb3b418664ff3a69ab12e, type: 3}
+  playerImage: {fileID: 2800000, guid: 608fede85773e1a4ba93f780a6d9f581, type: 3}
+  engNeutral: {fileID: 2800000, guid: 7da769f2a5756434f88447efef3dec25, type: 3}
+  engFearful: {fileID: 2800000, guid: 5fdd43d71a77ee34ea7b8133df1e97da, type: 3}
+  engHappy: {fileID: 2800000, guid: d0025cee7558ab74b91e8c941ab60067, type: 3}
+  engAngry: {fileID: 2800000, guid: 1d927969d63618a4b90b16887095e5b2, type: 3}
+  sciNeutral: {fileID: 2800000, guid: 7a81855bc2b3cd344ba904bf3c17ff4b, type: 3}
+  sciFearful: {fileID: 2800000, guid: a3538bf2bd1b8c1408ceaa44fcdab804, type: 3}
+  sciHappy: {fileID: 2800000, guid: 547fdcc24cd1fc54ea29b508a2bd368e, type: 3}
+  sciAngry: {fileID: 2800000, guid: 10931da0420401b4ca332220070464d6, type: 3}
+--- !u!114 &6357752872553807173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525893015658302198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f08d584c52521ec438274cb4aa15a59a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  databaseFile: {fileID: 4900000, guid: 1858db68d1f6221499c0c0c0a11a8e9d, type: 3}
+--- !u!114 &7000017857115487363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525893015658302198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d26ccdacb5dde44cad4a6af51696b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reactFrightened:
+    triggerChance: 75
+    captainLines: []
+    engineerLines:
+    - VOICE_ENG_FEAR
+    scientistLines:
+    - VOICE_SCI_FEAR
+    soldierLines:
+    - VOICE_SLD_FEAR1
+    - VOICE_SLD_FEAR2
+    injuredSoldierLines:
+    - VOICE_INJ_FEAR1
+    - VOICE_INJ_FEAR2
+    robotLines: []
+  reactDoorShut:
+    triggerChance: 40
+    captainLines:
+    - 'VOICE_CPT_DOOR '
+    engineerLines:
+    - 'VOICE_ENG_DOOR '
+    scientistLines:
+    - 'VOICE_SCI_DOOR '
+    soldierLines:
+    - VOICE_SLD_DOOR
+    injuredSoldierLines:
+    - 'VOICE_INJ_DOOR '
+    robotLines: []
+  reactTerrified:
+    triggerChance: 100
+    captainLines: []
+    engineerLines:
+    - VOICE_ENG_TERROR
+    scientistLines:
+    - VOICE_SCI_TERROR
+    soldierLines:
+    - VOICE_SLD_TERROR
+    injuredSoldierLines:
+    - VOICE_INJ_TERROR1
+    - VOICE_INJ_TERROR2
+    robotLines: []
+  reactFireIgnited:
+    triggerChance: 100
+    captainLines:
+    - VOICE_CPT_FIRE1
+    engineerLines:
+    - VOICE_ENG_FIRE1
+    - VOICE_ENG_FIRE2
+    scientistLines:
+    - 'VOICE_SCI_FIRE1 '
+    - VOICE_SCI_FIRE2
+    soldierLines:
+    - 'VOICE_SLD_FIRE '
+    injuredSoldierLines:
+    - 'VOICE_INJ_FIRE '
+    robotLines: []
+  reactAirlockOpened:
+    triggerChance: 79.9
+    captainLines: []
+    engineerLines: []
+    scientistLines: []
+    soldierLines: []
+    injuredSoldierLines: []
+    robotLines: []
+  reactRobotHacked:
+    triggerChance: 100
+    captainLines:
+    - 'VOICE_CPT_HACK '
+    engineerLines:
+    - 'VOICE_ENG_HACK '
+    scientistLines:
+    - 'VOICE_SCI_HACK '
+    soldierLines:
+    - 'VOICE_SLD_HACK '
+    injuredSoldierLines:
+    - 'VOICE_INJ_HACK '
+    robotLines: []
+  reactAlienReleased:
+    triggerChance: 75
+    captainLines:
+    - 'VOICE_CPT_ALIEN1 '
+    engineerLines:
+    - VOICE_ENG_ALIEN1
+    - VOICE_ENG_ALIEN2
+    scientistLines:
+    - 'VOICE_SCI_ALIEN1 '
+    - 'VOICE_SCI_ALIEN2 '
+    soldierLines:
+    - 'VOICE_SLD_ALIEN1 '
+    injuredSoldierLines:
+    - 'VOICE_INJ_ALIEN1 '
+    robotLines: []
+  reactOxygenDeactivated:
+    triggerChance: 100
+    captainLines:
+    - 'VOICE_CPT_O2 '
+    engineerLines:
+    - 'VOICE_ENG_O2.1 '
+    - VOICE_ENG_O2.2
+    scientistLines:
+    - 'VOICE_SCI_O2 '
+    soldierLines:
+    - VOICE_SLD_O2
+    injuredSoldierLines:
+    - 'VOICE_INJ_O2 '
+    robotLines: []
+  reactCaptainKilled:
+    triggerChance: 75
+    captainLines: []
+    engineerLines:
+    - 'VOICE_ENG_DEATH_CAP '
+    scientistLines: []
+    soldierLines:
+    - 'VOICE_SLD_DEATH_CPT '
+    injuredSoldierLines:
+    - 'VOICE_INJ_DEATH_ANY '
+    robotLines: []
+  reactEngineerKilled:
+    triggerChance: 75
+    captainLines:
+    - 'VOICE_CPT_DEATH_ANY '
+    engineerLines: []
+    scientistLines:
+    - 'VOICE_SCI_DEATH_ENG '
+    soldierLines:
+    - 'VOICE_SLD_DEATH_ENG '
+    injuredSoldierLines:
+    - 'VOICE_INJ_DEATH_ANY '
+    robotLines: []
+  reactScientistKilled:
+    triggerChance: 75
+    captainLines:
+    - 'VOICE_CPT_DEATH_ANY '
+    engineerLines:
+    - 'VOICE_ENG_DEATH_SCI '
+    scientistLines: []
+    soldierLines: []
+    injuredSoldierLines: []
+    robotLines: []
+  reactSoldierKilled:
+    triggerChance: 75
+    captainLines:
+    - 'VOICE_CPT_DEATH_ANY2 '
+    - VOICE_CPT_DEATH_ANY
+    engineerLines:
+    - 'VOICE_ENG_DEATH_SLD '
+    scientistLines:
+    - 'VOICE_SCI_DEATH_SLD1 '
+    - 'VOICE_SCI_DEATH_SLD2 '
+    soldierLines: []
+    injuredSoldierLines: []
+    robotLines: []
+  reactRobotKilled:
+    triggerChance: 75
+    captainLines:
+    - 'VOICE_CPT_KILL '
+    engineerLines:
+    - 'VOICE_ENG_KILL '
+    scientistLines: []
+    soldierLines:
+    - 'VOICE_SLD_KILL '
+    injuredSoldierLines: []
+    robotLines: []
+  reactAlienKilled:
+    triggerChance: 75
+    captainLines:
+    - 'VOICE_CPT_KILL '
+    engineerLines:
+    - 'VOICE_ENG_KILL '
+    scientistLines: []
+    soldierLines:
+    - 'VOICE_SLD_KILL '
+    injuredSoldierLines: []
+    robotLines: []
+  actionCapDisabled:
+    triggerChance: 100
+    captainLines:
+    - 'VOICE_CPT_CAP '
+    engineerLines:
+    - 'VOICE_ENG_CAP1 '
+    - VOICE_ENG_CAP2
+    scientistLines:
+    - 'VOICE_SCI_CAP1 '
+    - VOICE_SCI_CAP12
+    soldierLines:
+    - 'VOICE_SLD_CAP1 '
+    - VOICE_SLD_CAP2
+    injuredSoldierLines:
+    - 'VOICE_SLD_CAP1 '
+    robotLines: []
+  actionAxePickedUp:
+    triggerChance: 100
+    captainLines:
+    - 'VOICE_CPT_AXE '
+    engineerLines:
+    - 'VOICE_ENG_AXE '
+    scientistLines:
+    - 'VOICE_SCI_AXE '
+    soldierLines:
+    - 'VOICE_SLD_AXE '
+    injuredSoldierLines:
+    - 'VOICE_INJ_AXE '
+    robotLines: []
+  actionExtinguisherPickedUp:
+    triggerChance: 100
+    captainLines:
+    - 'VOICE_CPT_EX '
+    engineerLines: []
+    scientistLines: []
+    soldierLines:
+    - 'VOICE_SLD_EX '
+    injuredSoldierLines: []
+    robotLines: []
+  ambTurnStarted:
+    triggerChance: 25
+    captainLines:
+    - 'VOICE_CPT_AMB1 '
+    - VOICE_CPT_AMB2
+    - VOICE_CPT_AMB3
+    engineerLines:
+    - 'VOICE_ENG_AMB1 '
+    - VOICE_ENG_AMB2
+    scientistLines:
+    - 'VOICE_SCI_AMB1 '
+    - VOICE_SCI_AMB2
+    - VOICE_SCI_AMB3
+    soldierLines:
+    - VOICE_SLD_AMB1
+    - VOICE_SLD_AMB2
+    - VOICE_SLD_AMB3
+    - VOICE_SLD_AMB4
+    injuredSoldierLines:
+    - 'VOICE_INJ_AMB1 '
+    - VOICE_INJ_AMB2
+    - VOICE_INJ_AMB3
+    - VOICE_INJ_AMB4
+    - VOICE_INJ_AMB5
+    robotLines: []
+--- !u!114 &4634016515692248033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525893015658302198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0fa18ce8bd576b4f80a5dcd4394a307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableComics: 1
+  allowInputToSkip: 1
+  autoplayTimer: 2
+  uiDocument: {fileID: 9072815842123318913}
+  panelName: ComicPanel
+  airlockDeaths:
+    captain:
+      panels: []
+    soldier:
+      panels: []
+    injuredSoldier:
+      panels: []
+    engineer:
+      panels: []
+    scientist:
+      panels: []
+    robot:
+      panels: []
+  fireDeaths:
+    captain:
+      panels: []
+    soldier:
+      panels: []
+    injuredSoldier:
+      panels: []
+    engineer:
+      panels: []
+    scientist:
+      panels: []
+    robot:
+      panels: []
+  robotHackDeaths:
+    captain:
+      panels: []
+    soldier:
+      panels: []
+    injuredSoldier:
+      panels: []
+    engineer:
+      panels: []
+    scientist:
+      panels: []
+    robot:
+      panels: []
+  alienDeaths:
+    captain:
+      panels: []
+    soldier:
+      panels:
+      - {fileID: 2800000, guid: 2f786394ebe30c64dbc3a46233ea9d2e, type: 3}
+      - {fileID: 2800000, guid: 1996faf05946f9241b374991458b0191, type: 3}
+      - {fileID: 2800000, guid: a736c34c15ed9bb4b90dc6d627866ea2, type: 3}
+      - {fileID: 2800000, guid: 0da804ba53c64ca4dbad5694d18cce36, type: 3}
+      - {fileID: 2800000, guid: 46a268be956734a41b3e8faa76331016, type: 3}
+      - {fileID: 2800000, guid: 09e5fd18e935f59418c342de0fd73c72, type: 3}
+    injuredSoldier:
+      panels:
+      - {fileID: 2800000, guid: d060259d9e5ad8046a7f0eed80834865, type: 3}
+      - {fileID: 2800000, guid: 2ee86c1f09c9bab4ea2af23ab76fab97, type: 3}
+      - {fileID: 2800000, guid: aa477f7155ac4024a978a4eb7cf94af4, type: 3}
+      - {fileID: 2800000, guid: 501dfaa06302a2e42a69f2ff952cc86f, type: 3}
+      - {fileID: 2800000, guid: 0c405f29e05a57e44a063790f5837178, type: 3}
+    engineer:
+      panels: []
+    scientist:
+      panels: []
+    robot:
+      panels: []
+--- !u!114 &4914642519238843188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525893015658302198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e92c875fd33b49459dbb6ceb96ed281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tooltipDatabase:
+  - buttonID: BTN1
+    tooltipText: 
+--- !u!1 &1240314983720987350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7239166234395323568}
+  - component: {fileID: 9072815842123318913}
+  m_Layer: 5
+  m_Name: HUD_UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7239166234395323568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240314983720987350}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18.08295, y: -21.70091, z: 4.34786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9181209871756982711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9072815842123318913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240314983720987350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 2ed67720c9fa86c42a83b3de76a66684, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 2634181b1f8be044285f341af4ca623f, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!1 &1512904258535490546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7189469046067970575}
+  - component: {fileID: 7332516723415317189}
+  - component: {fileID: 167511648325318795}
+  m_Layer: 0
+  m_Name: UI_Tester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7189469046067970575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512904258535490546}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9181209871756982711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7332516723415317189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512904258535490546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bca99d0751b2f544b7aa2e3ca27238a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testBindings:
+  - note: 
+    triggerKey: 31
+    eventToFire: 0
+    characterName: 1
+    deathCause: 0
+    reactingCharacter: 1
+  - note: 
+    triggerKey: 37
+    eventToFire: 9
+    characterName: 1
+    deathCause: 0
+    reactingCharacter: 1
+  - note: 
+    triggerKey: 19
+    eventToFire: 11
+    characterName: 1
+    deathCause: 0
+    reactingCharacter: 1
+  - note: 
+    triggerKey: 32
+    eventToFire: 12
+    characterName: 5
+    deathCause: 4
+    reactingCharacter: 1
+  - note: 
+    triggerKey: 34
+    eventToFire: 12
+    characterName: 6
+    deathCause: 4
+    reactingCharacter: 1
+--- !u!114 &167511648325318795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512904258535490546}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f824096ed56c74986130501adde5e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1698144145284824180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7543508187948877600}
+  - component: {fileID: 5861419734177074099}
+  m_Layer: 5
+  m_Name: MainMenu_UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7543508187948877600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698144145284824180}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9181209871756982711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5861419734177074099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698144145284824180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 2ed67720c9fa86c42a83b3de76a66684, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: c05798b6a01198d45b8f636b5eac52d3, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!1 &3394984531531903040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5602445570651769512}
+  - component: {fileID: 302440724589291850}
+  m_Layer: 0
+  m_Name: MENUmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5602445570651769512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394984531531903040}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9181209871756982711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &302440724589291850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394984531531903040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d7274b170c833849b18853a682ddc1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hudDocument: {fileID: 9072815842123318913}
+  mainMenuDocument: {fileID: 5861419734177074099}
+  pauseMenuDocument: {fileID: 3213192882930643620}
+--- !u!1 &7917877766565090150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9181209871756982711}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9181209871756982711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917877766565090150}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.08295, y: 21.70091, z: -4.34786}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7189469046067970575}
+  - {fileID: 7239166234395323568}
+  - {fileID: 7543508187948877600}
+  - {fileID: 6082616428102142215}
+  - {fileID: 4955170296267007695}
+  - {fileID: 5602445570651769512}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8668075610913988729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6082616428102142215}
+  - component: {fileID: 3213192882930643620}
+  m_Layer: 5
+  m_Name: PauseMenu_UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6082616428102142215
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8668075610913988729}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9181209871756982711}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3213192882930643620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8668075610913988729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 2ed67720c9fa86c42a83b3de76a66684, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: a59f012b1dbf36d409797a691dbb0b07, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080

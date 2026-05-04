@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
             o2Triggered = true;
             o2TurnsRemaining = 5;
             Debug.Log("O2 CUT! Crew has 5 turns!");
+            UIEventsListener.OnOxygenDeactivated?.Invoke();
         }
     }
 
@@ -131,7 +132,7 @@ public class GameManager : MonoBehaviour
         o2Triggered = false;
         o2TurnsRemaining = -1;
         Debug.Log("O2 restored!");
-        PlayerActionUI.Instance.RefreshButtons();
+  
     }
 
     public void ReleaseAlien()
@@ -188,6 +189,8 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log($"{crew.gameObject.tag} burned to death!");
                 RemoveCrewMember(crew);
+                string byTag  = crew.gameObject.tag;
+                UIEventsListener.OnCharacterDeath?.Invoke(byTag, "Fire");
                 if (gameOver) return;
             }
         }

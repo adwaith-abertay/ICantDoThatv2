@@ -1,20 +1,30 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.UIElements; // Changed from UnityEngine.UI
 
 [System.Serializable]
 public class AirlockData
 {
     public string airlockName;
     public List<string> tiles;
-    public Button airlockButton;
+
+    [Tooltip("The exact name of the button in UI Builder (e.g., Airlock1)")]
+    public string buttonName;
+
     public int cost = 4;
+
+    // We keep a reference to the UI Toolkit button so we can enable/disable it later
+    [HideInInspector]
+    public Button uieButton;
 }
 
 public class AirlockManager : MonoBehaviour
 {
     public static AirlockManager Instance;
+
+    [Header("UI Toolkit Reference")]
+    public UIDocument uiDocument; // Drag your HUD UI Document here
 
     [Header("Airlocks")]
     public List<AirlockData> airlocks = new List<AirlockData>();
@@ -32,11 +42,29 @@ public class AirlockManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (AirlockData airlock in airlocks)
+        // Bind the UI Toolkit buttons
+        if (uiDocument != null)
         {
-            AirlockData captured = airlock;
-            if (captured.airlockButton != null)
-                captured.airlockButton.onClick.AddListener(() => TryTriggerAirlock(captured));
+            var root = uiDocument.rootVisualElement;
+            foreach (AirlockData airlock in airlocks)
+            {
+                if (!string.IsNullOrEmpty(airlock.buttonName))
+                {
+                    // Find the button by its string name from the UI Builder
+                    airlock.uieButton = root.Q<Button>(airlock.buttonName);
+
+                    if (airlock.uieButton != null)
+                    {
+                        // Capture the variable for the lambda expression
+                        AirlockData captured = airlock;
+                        airlock.uieButton.clicked += () => TryTriggerAirlock(captured);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"AirlockManager: Could not find button '{airlock.buttonName}' in UI Document.");
+                    }
+                }
+            }
         }
 
         // All pods off by default
@@ -163,6 +191,8 @@ public class AirlockManager : MonoBehaviour
 
         PlayerActionManager.Instance.SpendEnergy(airlock.cost);
         Debug.Log($"{airlock.airlockName} triggered! Flushing tiles: {string.Join(", ", airlock.tiles)}");
+        AudioManager.Instance.PlayOpenAirlock();
+        UIEventsListener.OnAirlockOpened?.Invoke();
 
         List<CharacterMovement> crewSnapshot = new List<CharacterMovement>(GameManager.Instance.GetCrewMembers());
         List<CharacterMovement> toKill = new List<CharacterMovement>();
@@ -196,6 +226,7 @@ public class AirlockManager : MonoBehaviour
             if (cm == null || cm.gameObject == null) continue;
             Debug.Log($"KILLING: {cm.gameObject.tag} flushed out of {airlock.airlockName}!");
             GameManager.Instance.RemoveCrewMember(cm);
+            UIEventsListener.OnCharacterDeath?.Invoke(cm.gameObject.tag, "Airlock");
         }
 
         if (Robot.Instance != null && Robot.Instance.gameObject.activeInHierarchy)
@@ -215,8 +246,14 @@ public class AirlockManager : MonoBehaviour
             Alien.Instance.gameObject.SetActive(false);
         }
 
-        PlayerActionUI.Instance.RefreshButtons();
         RefreshButtons();
+
+        // --- NEW: Automatically close the airlock menu if it was open! ---
+        if (SIIDUIManager.Instance != null)
+        {
+            SIIDUIManager.Instance.HideAirlockMenu();
+        }
+
         return true;
     }
 
@@ -246,8 +283,11 @@ public class AirlockManager : MonoBehaviour
 
         foreach (AirlockData airlock in airlocks)
         {
-            if (airlock.airlockButton != null)
-                airlock.airlockButton.interactable = energy >= airlock.cost;
+            if (airlock.uieButton != null)
+            {
+                // UI Toolkit uses SetEnabled() instead of .interactable
+                airlock.uieButton.SetEnabled(energy >= airlock.cost);
+            }
         }
     }
 
@@ -282,9 +322,8 @@ public class AirlockManager : MonoBehaviour
         }
 
         PlayerActionManager.Instance.SpendEnergy(8);
-        PlayerActionUI.Instance.RefreshButtons();
     }
 
-    // Used by PlayerActionUI to enable the flush button
+    // Used by SIIDUIManager to check if buttons should be active
     public bool IsAnyoneInSpace() => crewInSpace.Count > 0;
 }

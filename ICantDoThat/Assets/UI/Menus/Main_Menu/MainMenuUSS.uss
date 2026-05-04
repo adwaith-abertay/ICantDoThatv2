@@ -1,0 +1,106 @@
+VisualElement > #SiidBTNholder > .unity-button {
+    opacity: 1;
+    font-size: 30px;
+    color: rgb(207, 207, 207);
+    width: 100%;
+    height: 9%;
+    transition-duration: 0s;
+    transition-timing-function: ease;
+    transition-property: all;
+    align-self: center;
+    align-items: center;
+    background-image: url("project://database/Assets/UI/UI_V2/Ui_V2_Assets/SiddBtnDisabledV2.png?fileID=2800000&guid=611fdab4f9b2efd4396b6b9fbb5e2079&type=3#SiddBtnDisabledV2");
+}
+
+VisualElement > #SiidPowerHolder > VisualElement {
+    height: 9%;
+    background-image: url("project://database/Assets/UI/UI_V2/Ui_V2_Assets/SiddPowerIndicatorOff.png?fileID=2800000&guid=81a5f0d1b44db5d49b5653fd973a89f4&type=3#SiddPowerIndicatorOff");
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    align-items: auto;
+    justify-content: flex-start;
+    align-self: auto;
+    align-content: auto;
+    width: 75px;
+    max-height: 9%;
+    max-width: 100%;
+    opacity: 1;
+    min-width: 75px;
+    min-height: 75px;
+}
+
+#SiidHolder > #SiidBTNholder > #DeactivateOxygen > .unity-label {
+}
+
+VisualElement > #SiidPowerHolder > #SiidPower1 {
+    background-image: url("project://database/Assets/UI/UI_V2/Ui_V2_Assets/SiddPowerIndicatorLogoOff.png?fileID=2800000&guid=b5f56eb6d80525646845ab381772dbfb&type=3#SiddPowerIndicatorLogoOff");
+}
+
+#DeactivateOxygen > VisualElement {
+    opacity: 1;
+}
+
+.console-text-base {
+    -unity-font-definition: url("project://database/Assets/UI/UI_V3/Assets/PixelOperatorHBSC.ttf?fileID=12800000&guid=d9174a0ac864c5946a3b57670a626d7c&type=3#PixelOperatorHBSC");
+    color: rgb(0, 138, 0);
+    font-size: 28px;
+    -unity-text-align: upper-center;
+}
+
+#Menu > .unity-button {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    -unity-font-definition: url("project://database/Assets/UI/UI_V3/Assets/PixelOperator8.ttf?fileID=12800000&guid=ea49744cef7b528458e56196a0a13512&type=3#PixelOperator8");
+    font-size: 40px;
+    color: rgb(0, 138, 0);
+    -unity-text-align: middle-left;
+    width: 45%;
+    height: 10%;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background-image: none;
+    -unity-font-style: normal;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+#Menu > .unity-button:hover {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgb(172, 191, 201);
+    border-right-color: rgb(172, 191, 201);
+    border-top-color: rgb(172, 191, 201);
+    border-bottom-color: rgb(172, 191, 201);
+    -unity-font-definition: url("project://database/Assets/UI/UI_V3/Assets/PixelOperator8.ttf?fileID=12800000&guid=ea49744cef7b528458e56196a0a13512&type=3#PixelOperator8");
+    font-size: 40px;
+    color: rgb(0, 255, 0);
+    -unity-text-align: middle-left;
+    width: 45%;
+    height: 10%;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background-image: none;
+    -unity-font-style: normal;
+    transition-delay: 0.2s;
+    text-shadow: 0 0 5px rgb(0, 0, 0);
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    transition-timing-function: ease-in-out;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    -unity-text-outline-color: rgb(0, 255, 0);
+}

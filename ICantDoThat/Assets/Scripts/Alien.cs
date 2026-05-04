@@ -43,6 +43,7 @@ public class Alien : MonoBehaviour
         }
 
         Debug.Log("Alien released!");
+        UIEventsListener.OnAlienReleased?.Invoke();
     }
 
     public IEnumerator TakeTurn()
@@ -74,6 +75,7 @@ public class Alien : MonoBehaviour
             {
                 Debug.Log($"Alien killed {crew.gameObject.tag}!");
                 GameManager.Instance.RemoveCrewMember(crew);
+                UIEventsListener.OnCharacterDeath?.Invoke(crew.gameObject.tag, "Alien");
                 break;
             }
         }

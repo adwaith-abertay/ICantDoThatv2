@@ -41,12 +41,16 @@ public class CapPointManager : MonoBehaviour
     }
 
     // Now public so CharacterMovement and AIBrain can call it directly
-    public void DestroyCapPoint(string tileName)
+    public void DestroyCapPoint(string tileName, string crewTag = "Unknown")
     {
         if (destroyedCapPoints.Contains(tileName)) return;
 
         destroyedCapPoints.Add(tileName);
         Debug.Log($"Cap point {tileName} destroyed! {GetActiveCount()} remaining.");
+
+        // Notify UI that a crew member has disabled a CAP point
+        UIEventsListener.OnCapDisabled?.Invoke(crewTag);
+        AudioManager.Instance.PlayCapDisabled();
 
         TileData tile = GridManager.Instance.GetTile(tileName);
         if (tile != null && destroyedMaterial != null)
@@ -55,7 +59,7 @@ public class CapPointManager : MonoBehaviour
             if (r != null) r.material = destroyedMaterial;
         }
 
-        Debug.Log(GetActiveCount() == 0 ? "All cap points destroyed — crew still needs the main switch!" : "");      
+        Debug.Log(GetActiveCount() == 0 ? "All cap points destroyed — crew still needs the main switch!" : "");
     }
 
     public int GenerateEnergy()

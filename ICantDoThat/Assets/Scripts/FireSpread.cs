@@ -25,6 +25,7 @@ public class FireSpread : MonoBehaviour
 
     public void StartFire()
     {
+        UIEventsListener.OnFireIgnited?.Invoke();
         if (string.IsNullOrEmpty(startingFireTile))
         {
             Debug.LogWarning("No starting fire tile assigned!");
@@ -73,7 +74,7 @@ public class FireSpread : MonoBehaviour
 
         if (firePrefab != null)
         {
-            Vector3 spawnPos = GetSpawnPosition(tileObj);
+            Vector3 spawnPos = GetFireSpawnPosition(tileObj);
             GameObject fire = Instantiate(firePrefab, spawnPos, Quaternion.identity);
             spawnedFires[tileName] = fire;
             Debug.Log($"Fire spawned at {spawnPos}");
@@ -111,7 +112,7 @@ public class FireSpread : MonoBehaviour
             GameObject tileObj = GameObject.Find(tileName);
             if (tileObj != null)
             {
-                Vector3 spawnPos = GetSpawnPosition(tileObj);
+                Vector3 spawnPos = GetFoamSpawnPosition(tileObj);
                 GameObject foam = Instantiate(foamPrefab, spawnPos, Quaternion.identity);
                 spawnedFoam[tileName] = foam;
             }
@@ -151,11 +152,18 @@ public class FireSpread : MonoBehaviour
     }
 
     // Uses tile's actual transform Z so particle systems render at the correct depth
-    private Vector3 GetSpawnPosition(GameObject tileObj)
+    private Vector3 GetFireSpawnPosition(GameObject tileObj)
     {
         Renderer r = tileObj.GetComponent<Renderer>();
         Vector3 center = r != null ? r.bounds.center : tileObj.transform.position;
-        return new Vector3(center.x, center.y-1.2f, -13.5f);
+        return new Vector3(center.x, center.y - 1.2f, -13.5f);
+    }
+
+    private Vector3 GetFoamSpawnPosition(GameObject tileObj)
+    {
+        Renderer r = tileObj.GetComponent<Renderer>();
+        Vector3 center = r != null ? r.bounds.center : tileObj.transform.position;
+        return new Vector3(center.x - 0.24f, center.y - 0.39f, -13.5f);
     }
 
     public bool IsFireActive() => burningTiles.Count > 0;

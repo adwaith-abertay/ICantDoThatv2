@@ -1,0 +1,96 @@
+--- MASTER EVENT CHEAT SHEET (v2.0) ---
+HOW TO USE:
+
+Copy and paste the line you need into your game logic.
+
+"CharacterName" should be replaced with the string tag of the person involved (e.g., "Captain", "Scientist", "Soldier", "Engineer", "Robot", or "Injured").
+
+Events listed as (GLOBAL) no longer require any parameters; the UIEventsListener will automatically pick a random survivor to react.  
+
+1. GENERAL REACTIONS
+A crew member gets frightened:
+UIEventsListener.OnFrightened?.Invoke("CharacterName");
+
+  
+
+A crew member gets terrified (Greater Fear):
+UIEventsListener.OnTerrified?.Invoke("CharacterName");
+
+  
+
+A door gets shut (GLOBAL):
+UIEventsListener.OnDoorShut?.Invoke();
+
+  
+
+A fire starts (GLOBAL):
+UIEventsListener.OnFireIgnited?.Invoke();
+
+  
+
+An airlock opens (GLOBAL):
+UIEventsListener.OnAirlockOpened?.Invoke();
+
+  
+
+The robot gets hacked (GLOBAL):
+UIEventsListener.OnRobotHacked?.Invoke();
+
+  
+
+The alien gets released (GLOBAL):
+UIEventsListener.OnAlienReleased?.Invoke();
+
+  
+
+The oxygen gets deactivated (GLOBAL):
+UIEventsListener.OnOxygenDeactivated?.Invoke();
+
+  
+
+2. CREW ACTIONS
+(Pass the "CharacterName" of the person doing the action so they say their specific line)
+
+A crew member starts disabling a C.A.P point:
+UIEventsListener.OnCapDisabled?.Invoke("CharacterName");
+
+  
+
+A crew member picks up the axe:
+UIEventsListener.OnAxePickedUp?.Invoke("CharacterName");
+
+  
+
+A crew member picks up the fire extinguisher:
+UIEventsListener.OnExtinguisherPickedUp?.Invoke("CharacterName");
+
+  
+
+3. DEATH TRIGGERS (COMIC + TEXT)
+When someone dies, this single line silences them permanently, plays their specific comic, and triggers a random survivor to react.
+
+  
+
+Killed by the Airlock:
+UIEventsListener.OnCharacterDeath?.Invoke("CharacterName", "Airlock");
+
+  
+
+Killed by Fire:
+UIEventsListener.OnCharacterDeath?.Invoke("CharacterName", "Fire");
+
+  
+
+Killed by the Alien:
+UIEventsListener.OnCharacterDeath?.Invoke("CharacterName", "Alien");
+
+  
+
+Killed by the Hacked Robot:
+UIEventsListener.OnCharacterDeath?.Invoke("CharacterName", "Hack");
+
+  
+
+4. AMBIENCE
+When a crew member starts their turn:
+UIEventsListener.OnTurnStarted?.Invoke("CharacterName");

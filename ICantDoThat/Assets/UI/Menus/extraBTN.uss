@@ -1,0 +1,74 @@
+:root {
+}
+
+#ExtraBtNholder > VisualElement > .unity-button {
+    font-size: 28px;
+    -unity-font-definition: url("project://database/Assets/UI/UI_V2/Ui_V2_Assets/BebasKai.otf?fileID=12800000&guid=1ec1d8e0e9d799741a1b531f6e07e6fc&type=3#BebasKai");
+    -unity-font-style: normal;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-image: url("project://database/Assets/UI/Menus/Extra%20Button2Off.png?fileID=2800000&guid=a0ea6d192de33f043a7994afc3884808&type=3#Extra Button2Off");
+    width: 125px;
+    height: 125px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: rgb(172, 191, 201);
+    text-shadow: 0 0 1px rgb(0, 0, 0);
+    border-top-left-radius: 65px;
+    border-top-right-radius: 65px;
+    border-bottom-right-radius: 65px;
+    border-bottom-left-radius: 65px;
+}
+
+#ExtraBtNholder > VisualElement > .unity-button:hover {
+    font-size: 28px;
+    -unity-font-definition: url("project://database/Assets/UI/UI_V2/Ui_V2_Assets/BebasKai.otf?fileID=12800000&guid=1ec1d8e0e9d799741a1b531f6e07e6fc&type=3#BebasKai");
+    -unity-font-style: normal;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-image: url("project://database/Assets/UI/Menus/ExtraButton2on.png?fileID=2800000&guid=7e71933f3f2bdc44ea0d6afd3a5c62dc&type=3#ExtraButton2on");
+    width: 125px;
+    height: 125px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: rgb(172, 191, 201);
+    text-shadow: 0 0 1px rgb(0, 0, 0);
+    border-top-left-radius: 65px;
+    border-top-right-radius: 65px;
+    border-bottom-right-radius: 65px;
+    border-bottom-left-radius: 65px;
+}
+
+#ExtraBtNholder > VisualElement > .unity-button:active {
+    font-size: 28px;
+    -unity-font-definition: url("project://database/Assets/UI/UI_V2/Ui_V2_Assets/BebasKai.otf?fileID=12800000&guid=1ec1d8e0e9d799741a1b531f6e07e6fc&type=3#BebasKai");
+    -unity-font-style: normal;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    background-image: url("project://database/Assets/UI/Menus/ExtraButton2on.png?fileID=2800000&guid=7e71933f3f2bdc44ea0d6afd3a5c62dc&type=3#ExtraButton2on");
+    width: 125px;
+    height: 125px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: rgb(172, 191, 201);
+    text-shadow: 0 0 1px rgb(0, 0, 0);
+    border-top-left-radius: 65px;
+    border-top-right-radius: 65px;
+    border-bottom-right-radius: 65px;
+    border-bottom-left-radius: 65px;
+}

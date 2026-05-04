@@ -59,7 +59,6 @@ public class CollectibleManager : MonoBehaviour
 
     private void UpdateCollectibleIcon(string crewTag, CollectibleType type)
     {
-        // Grab the right pair of icons for this crew member
         GameObject axeIcon = null;
         GameObject extIcon = null;
 
@@ -85,6 +84,12 @@ public class CollectibleManager : MonoBehaviour
 
         if (axeIcon != null) axeIcon.SetActive(type == CollectibleType.Axe);
         if (extIcon != null) extIcon.SetActive(type == CollectibleType.FireExtinguisher);
+
+        // Fire the correct event based on what was actually picked up
+        if (type == CollectibleType.Axe)
+            UIEventsListener.OnAxePickedUp?.Invoke(crewTag);
+        else if (type == CollectibleType.FireExtinguisher)
+            UIEventsListener.OnExtinguisherPickedUp?.Invoke(crewTag);
     }
 
     public CollectibleType GetCollectible(string crewTag)

@@ -20,9 +20,9 @@ public class CharacterMovement : MonoBehaviour
     public bool hasSoldierExtraLife = false;
 
     private string currentTile;
-    private bool isMoving = false;
-    private bool isFeared = false;
-    private bool isGreaterFeared = false;
+    public bool isMoving = false;
+    public bool isFeared = false;
+    public bool isGreaterFeared = false;
     private float lockedZ;
     private bool extraLifeUsed = false;
     private bool killedAlienThisStep = false;
@@ -65,12 +65,20 @@ public class CharacterMovement : MonoBehaviour
         if (!isMoving)
             StartCoroutine(MoveAlongPath(blockedTiles, overrideSteps));
     }
+    private void StopMoving()
+    {
+        if (AudioManager.Instance != null)
+            AudioManager.Instance.StopLoop();
+        isMoving = false;
+    }
 
     private IEnumerator MoveAlongPath(HashSet<string> blockedTiles = null, int overrideSteps = -1)
     {
         if (this == null || gameObject == null) yield break;
 
         isMoving = true;
+        if (AudioManager.Instance != null)
+    AudioManager.Instance.PlayCrewWalking();
         stepsUsedThisTurn = 0;
 
         int stepsAllowed = overrideSteps > 0 ? overrideSteps
@@ -84,7 +92,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (!isScientist && !string.IsNullOrEmpty(capInProgress) && capMovesRemaining > 0)
         {
-            if (this == null) { isMoving = false; yield break; }
+            if (this == null) { StopMoving(); yield break; }
 
             int movesSpent = Mathf.Min(stepsRemaining, capMovesRemaining);
             capMovesRemaining -= movesSpent;
@@ -94,11 +102,11 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log($"{gameObject.tag} spending {movesSpent} moves on cap {capInProgress} — {capMovesRemaining} moves left.");
             yield return new WaitForSeconds(movesSpent * (1f / moveSpeed));
 
-            if (this == null) { isMoving = false; yield break; }
+            if (this == null) { StopMoving(); yield break; }
 
             if (capMovesRemaining <= 0)
             {
-                CapPointManager.Instance.DestroyCapPoint(capInProgress);
+                CapPointManager.Instance.DestroyCapPoint(capInProgress, gameObject.tag);
                 Debug.Log($"{gameObject.tag} destroyed cap point {capInProgress}!");
                 capInProgress = "";
                 capMovesRemaining = 0;
@@ -106,19 +114,19 @@ public class CharacterMovement : MonoBehaviour
 
             if (stepsRemaining <= 0 || capMovesRemaining > 0)
             {
-                isMoving = false;
+                StopMoving();
                 yield break;
             }
         }
 
-        if (this == null) { isMoving = false; yield break; }
+        if (this == null) { StopMoving(); yield break; }
 
         List<TileData> path = Pathfinder.Instance.FindPath(currentTile, targetTile, blockedTiles, canTravelThroughVents);
 
         if (path == null || path.Count <= 1)
         {
             Debug.LogWarning($"{gameObject.tag}: No path found or already at destination.");
-            isMoving = false;
+            StopMoving();
             yield break;
         }
 
@@ -126,25 +134,25 @@ public class CharacterMovement : MonoBehaviour
 
         for (int i = 1; i <= stepsToTake; i++)
         {
-            if (this == null || gameObject == null) { isMoving = false; yield break; }
+            if (this == null || gameObject == null) { StopMoving(); yield break; }
 
             killedAlienThisStep = false;
             yield return StartCoroutine(MoveToTile(path[i]));
 
-            if (this == null || gameObject == null) { isMoving = false; yield break; }
+            if (this == null || gameObject == null) { StopMoving(); yield break; }
 
             stepsUsedThisTurn++;
 
             if (killedAlienThisStep)
             {
-                isMoving = false;
+                StopMoving();
                 yield break;
             }
 
             // ← POD: crew entered pod mid-path — stop moving
             if (!gameObject.activeSelf)
             {
-                isMoving = false;
+                StopMoving();
                 yield break;
             }
 
@@ -158,7 +166,7 @@ public class CharacterMovement : MonoBehaviour
                 Debug.Log($"{gameObject.tag} using {movesSpent} remaining moves on cap — {capMovesRemaining} left.");
                 yield return new WaitForSeconds(movesSpent * (1f / moveSpeed));
 
-                if (this == null) { isMoving = false; yield break; }
+                if (this == null) { StopMoving(); yield break; }
 
                 if (capMovesRemaining <= 0)
                 {
@@ -172,12 +180,12 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
-        if (this == null || gameObject == null) { isMoving = false; yield break; }
+        if (this == null || gameObject == null) { StopMoving(); yield break; }
 
         if (currentTile == GameManager.Instance.GetMainSwitchTile())
             GameManager.Instance.DisableMainSwitch();
 
-        isMoving = false;
+        StopMoving();
     }
 
     private IEnumerator MoveToTile(TileData tile)
@@ -269,7 +277,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void TeleportToTile(string tileName)
     {
-        isMoving = false;
+        StopMoving();
         justReturnedFromSpace = true; // ← ignore pod on this tile
 
         GameObject tileObj = GameObject.Find(tileName);

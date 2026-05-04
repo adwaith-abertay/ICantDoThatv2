@@ -8,132 +8,84 @@ public class AIBrain : MonoBehaviour
 
     private void Awake() => Instance = this;
 
-public IEnumerator RunCrewActions()
-{
-    HashSet<string> fireTiles = FireSpread.Instance.GetBurningTiles();
-    bool alienReleased = Alien.Instance.IsReleased();
-    bool fireActive = fireTiles.Count > 0;
-
-    string[] turnOrder = { "Captain", "Scientist", "Soldier", "Engineer" };
-
-    List<CharacterMovement> orderedCrew = new List<CharacterMovement>();
-    foreach (string tag in turnOrder)
+    public IEnumerator RunCrewActions()
     {
-        GameObject obj = GameObject.FindWithTag(tag);
-        if (obj == null) continue;
-        CharacterMovement cm = obj.GetComponent<CharacterMovement>();
-        if (cm != null) orderedCrew.Add(cm);
-    }
+        HashSet<string> fireTiles = FireSpread.Instance.GetBurningTiles();
+        bool alienReleased = Alien.Instance.IsReleased();
+        bool fireActive = fireTiles.Count > 0;
 
-    Dictionary<CharacterMovement, string> assignments = AssignDestinations(orderedCrew, fireTiles, alienReleased, fireActive);
+        string[] turnOrder = { "Captain", "Scientist", "Soldier", "Engineer" };
 
-    for (int idx = 0; idx < orderedCrew.Count; idx++)
-    {
-        CharacterMovement cm = orderedCrew[idx];
-        if (cm == null) continue;
-        if (!assignments.ContainsKey(cm)) continue;
-
-        string dest = assignments[cm];
-        if (string.IsNullOrEmpty(dest)) continue;
-
-        string crewTag = cm.gameObject.tag;
-        bool isAxeHunter = alienReleased &&
-            CollectibleManager.Instance.GetCollectible(crewTag) == CollectibleType.Axe;
-        bool isExtinguisher = CollectibleManager.Instance.GetCollectible(crewTag) == CollectibleType.FireExtinguisher;
-
-        // Leg 1 — move to assigned destination
-        cm.SetTarget(dest);
-        Debug.Log($"{crewTag} assigned to: {dest}");
-
-        yield return new WaitForSeconds(0.1f);
-        if (cm == null) continue;
-
-        // Engineer can walk into fire tiles, everyone else avoids them
-        cm.MoveToTarget(isExtinguisher ? null : fireTiles);
-
-        CharacterMovement capturedCm = cm;
-        yield return new WaitUntil(() => capturedCm == null || !capturedCm.gameObject.activeInHierarchy || !capturedCm.IsMoving());
-
-        // Leg 2 — Axe holder killed Alien, continue with remaining steps
-        if (cm != null && isAxeHunter &&
-            (Alien.Instance == null || !Alien.Instance.gameObject.activeInHierarchy))
+        List<CharacterMovement> orderedCrew = new List<CharacterMovement>();
+        foreach (string tag in turnOrder)
         {
-            int stepsLeft = cm.GetMaxSteps() - cm.GetStepsUsedThisTurn();
-            Debug.Log($"{crewTag} killed Alien — {stepsLeft} steps remaining");
-
-            if (stepsLeft > 0)
-            {
-                string nextDest = GetBestUniqueDestination(cm.GetCurrentTile(), cm.CanUseVents());
-                if (!string.IsNullOrEmpty(nextDest))
-                {
-                    Debug.Log($"{crewTag} continuing to {nextDest} with {stepsLeft} steps");
-                    cm.SetTarget(nextDest);
-
-                    yield return new WaitForSeconds(0.1f);
-                    if (cm == null) continue;
-
-                    cm.MoveToTarget(fireTiles, stepsLeft);
-
-                    CharacterMovement capturedCm2 = cm;
-                    yield return new WaitUntil(() => capturedCm2 == null || !capturedCm2.gameObject.activeInHierarchy || !capturedCm2.IsMoving());
-                }
-            }
+            GameObject obj = GameObject.FindWithTag(tag);
+            if (obj == null) continue;
+            CharacterMovement cm = obj.GetComponent<CharacterMovement>();
+            if (cm != null) orderedCrew.Add(cm);
         }
 
-        // Leg 3 — Engineer retreat if still on or adjacent to fire after extinguishing
-        if (cm != null && isExtinguisher)
+        Dictionary<CharacterMovement, string> assignments = AssignDestinations(orderedCrew, fireTiles, alienReleased, fireActive);
+
+        for (int idx = 0; idx < orderedCrew.Count; idx++)
         {
-            string engineerTile = cm.GetCurrentTile();
-            HashSet<string> updatedFire = FireSpread.Instance.GetBurningTiles();
+            CharacterMovement cm = orderedCrew[idx];
+            if (cm == null) continue;
+            if (!assignments.ContainsKey(cm)) continue;
 
-            // Check if on fire or adjacent to fire
-            bool inDanger = updatedFire.Contains(engineerTile);
-            if (!inDanger)
-            {
-                List<TileData> neighbours = GridManager.Instance.GetAllNeighbours(engineerTile);
-                foreach (TileData n in neighbours)
-                {
-                    if (updatedFire.Contains(n.tileName)) { inDanger = true; break; }
-                }
-            }
+            string dest = assignments[cm];
+            if (string.IsNullOrEmpty(dest)) continue;
 
-            if (inDanger)
+            string crewTag = cm.gameObject.tag;
+            bool isAxeHunter = alienReleased &&
+                CollectibleManager.Instance.GetCollectible(crewTag) == CollectibleType.Axe;
+            bool isExtinguisher = CollectibleManager.Instance.GetCollectible(crewTag) == CollectibleType.FireExtinguisher;
+
+            // Leg 1 — move to assigned destination
+            cm.SetTarget(dest);
+            Debug.Log($"{crewTag} assigned to: {dest}");
+
+            yield return new WaitForSeconds(0.1f);
+            if (cm == null) continue;
+
+            cm.MoveToTarget(isExtinguisher ? null : fireTiles);
+
+            CharacterMovement capturedCm = cm;
+            yield return new WaitUntil(() => capturedCm == null || !capturedCm.gameObject.activeInHierarchy || !capturedCm.IsMoving());
+
+            // Leg 2 — Axe holder killed Alien, use remaining steps on a useful destination
+            if (cm != null && isAxeHunter &&
+                (Alien.Instance == null || !Alien.Instance.gameObject.activeInHierarchy))
             {
-                // Find nearest safe walkable neighbour
-                string safeTile = null;
-                List<TileData> neighbours = GridManager.Instance.GetAllNeighbours(engineerTile);
-                foreach (TileData n in neighbours)
+                int stepsLeft = cm.GetMaxSteps() - cm.GetStepsUsedThisTurn();
+                Debug.Log($"{crewTag} killed Alien — {stepsLeft} steps remaining");
+
+                if (stepsLeft > 0)
                 {
-                    if (!updatedFire.Contains(n.tileName) && n.isWalkable)
+                    // Build claimed set from current assignments so we don't double up
+                    HashSet<string> usedTargets = new HashSet<string>();
+                    foreach (var pair in assignments)
+                        if (!string.IsNullOrEmpty(pair.Value))
+                            usedTargets.Add(pair.Value);
+
+                    string nextDest = GetBestUniqueDestination(cm.GetCurrentTile(), cm.CanUseVents(), usedTargets);
+                    if (!string.IsNullOrEmpty(nextDest))
                     {
-                        safeTile = n.tileName;
-                        break;
+                        Debug.Log($"{crewTag} continuing to {nextDest} with {stepsLeft} steps");
+                        cm.SetTarget(nextDest);
+
+                        yield return new WaitForSeconds(0.1f);
+                        if (cm == null) continue;
+
+                        cm.MoveToTarget(fireTiles, stepsLeft);
+
+                        CharacterMovement capturedCm2 = cm;
+                        yield return new WaitUntil(() => capturedCm2 == null || !capturedCm2.gameObject.activeInHierarchy || !capturedCm2.IsMoving());
                     }
                 }
-
-                if (safeTile != null)
-                {
-                    Debug.Log($"{crewTag} retreating from fire to {safeTile}");
-                    cm.SetTarget(safeTile);
-
-                    yield return new WaitForSeconds(0.1f);
-                    if (cm == null) continue;
-
-                    cm.MoveToTarget(null, 1); // 1 step retreat, no blocked tiles
-
-                    CharacterMovement capturedRetreat = cm;
-                    yield return new WaitUntil(() => capturedRetreat == null || !capturedRetreat.gameObject.activeInHierarchy || !capturedRetreat.IsMoving());
-                }
-                else
-                {
-                    Debug.Log($"{crewTag} is trapped — no safe tile to retreat to!");
-                }
             }
         }
     }
-
-    
-}
 
     private Dictionary<CharacterMovement, string> AssignDestinations(
         List<CharacterMovement> crew,
@@ -151,10 +103,12 @@ public IEnumerator RunCrewActions()
             string tag = cm.gameObject.tag;
             CollectibleType held = CollectibleManager.Instance.GetCollectible(tag);
 
-            // Priority 1: Axe holder hunts alien
+            // Priority 1: Axe holder hunts alien — only if alien is alive
             if (held == CollectibleType.Axe && alienReleased)
             {
-                if (Alien.Instance == null) goto defaultDest;
+                if (Alien.Instance == null || !Alien.Instance.gameObject.activeInHierarchy)
+                    goto defaultDest;
+
                 string alienTile = Alien.Instance.GetCurrentTile();
                 assignments[cm] = alienTile;
                 Debug.Log($"{tag} has Axe — hunting Alien at {alienTile}");
@@ -168,27 +122,44 @@ public IEnumerator RunCrewActions()
                 if (nearestFire != null)
                 {
                     assignments[cm] = nearestFire;
-                    //claimedTargets.Add(nearestFire);
                     Debug.Log($"{tag} has Extinguisher — heading to fire at {nearestFire}");
                     continue;
                 }
             }
 
-            // Priority 3: Closest crew member goes to O2 if triggered
+            // Priority 3: Closest crew member goes to O2 if triggered,
+            // but only if they are NOT closer to the main switch
             if (GameManager.Instance.IsO2Triggered() && !claimedTargets.Contains(PlayerActionManager.Instance.GetO2Tile()))
             {
-                CharacterMovement o2Runner = GetClosestCrewToTile(crew, PlayerActionManager.Instance.GetO2Tile(), fireTiles);
-                if (o2Runner == cm)
+                string mainSwitch = GameManager.Instance.GetMainSwitchTile();
+
+                if (GameManager.Instance.IsMainSwitchActive())
                 {
-                    string o2Tile = PlayerActionManager.Instance.GetO2Tile();
-                    assignments[cm] = o2Tile;
-                    claimedTargets.Add(o2Tile);
-                    Debug.Log($"{tag} rerouting to O2 tile!");
-                    continue;
+                    CharacterMovement o2Runner = GetClosestCrewToTile(crew, PlayerActionManager.Instance.GetO2Tile(), fireTiles);
+                    if (o2Runner == cm)
+                    {
+                        string o2Tile = PlayerActionManager.Instance.GetO2Tile();
+                        List<TileData> pathToSwitch = Pathfinder.Instance.FindPath(cm.GetCurrentTile(), mainSwitch, fireTiles, cm.CanUseVents());
+                        List<TileData> pathToO2    = Pathfinder.Instance.FindPath(cm.GetCurrentTile(), o2Tile,    fireTiles, cm.CanUseVents());
+
+                        int switchDist = pathToSwitch != null ? pathToSwitch.Count : int.MaxValue;
+                        int o2Dist     = pathToO2    != null ? pathToO2.Count     : int.MaxValue;
+
+                        if (switchDist <= o2Dist)
+                        {
+                            Debug.Log($"{tag} is closer to main switch ({switchDist}) than O2 ({o2Dist}) — prioritising main switch!");
+                            goto defaultDest;
+                        }
+
+                        assignments[cm] = o2Tile;
+                        claimedTargets.Add(o2Tile);
+                        Debug.Log($"{tag} rerouting to O2 tile!");
+                        continue;
+                    }
                 }
             }
 
-            // Priority 4: Unique nearest destroyable point
+            // Priority 4: Best unique destination (cap point or main switch)
             defaultDest:
             string dest = GetBestUniqueDestination(cm.GetCurrentTile(), cm.CanUseVents(), claimedTargets);
             assignments[cm] = dest;

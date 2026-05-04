@@ -42,10 +42,31 @@ public class CrewIconManager : MonoBehaviour
     private void Awake() => Instance = this;
 
     // --- Core helper — swaps sprite and enforces assigned scale ---
+    // --- Core helper — swaps sprite and enforces assigned scale ---
     private void SetSprite(SpriteRenderer sr, Sprite sprite, Vector3 scale)
     {
+        if (sr == null) return; // silently ignore if destroyed
         sr.sprite = sprite;
         sr.transform.localScale = scale;
+    }
+
+    // --- Revert feared icons after one turn ---
+    public void RevertFearIcons()
+    {
+        if (captainIcon != null && captainIcon.sprite == captainFeared)
+            SetCaptainNormal();
+
+        if (scientistIcon != null && scientistIcon.sprite == scientistFeared)
+            SetScientistNormal();
+
+        if (engineerIcon != null && engineerIcon.sprite == engineerFeared)
+            SetEngineerNormal();
+
+        if (robotIcon != null && robotIcon.sprite == robotFeared)
+            SetRobotNormal();
+
+        if (soldierIcon != null && (soldierIcon.sprite == soldierFeared || soldierIcon.sprite == soldierFearedLostLife))
+            SetSprite(soldierIcon, soldierHasLostLife ? soldierLostLife : soldierNormal, soldierScale);
     }
 
     // --- Captain ---
@@ -90,15 +111,5 @@ public class CrewIconManager : MonoBehaviour
         }
     }
 
-    // --- Revert feared icons after one turn ---
-    public void RevertFearIcons()
-    {
-        if (captainIcon.sprite   == captainFeared)      SetCaptainNormal();
-        if (scientistIcon.sprite == scientistFeared)    SetScientistNormal();
-        if (engineerIcon.sprite  == engineerFeared)     SetEngineerNormal();
-        if (robotIcon.sprite     == robotFeared)        SetRobotNormal();
-
-        if (soldierIcon.sprite == soldierFeared || soldierIcon.sprite == soldierFearedLostLife)
-            SetSprite(soldierIcon, soldierHasLostLife ? soldierLostLife : soldierNormal, soldierScale);
-    }
+    
 }

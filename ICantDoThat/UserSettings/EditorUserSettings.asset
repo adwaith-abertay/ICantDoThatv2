@@ -6,7 +6,7 @@ EditorUserSettings:
   serializedVersion: 4
   m_ConfigSettings:
     GraphicsSettingsInspector_UserSettings:
-      value: 18134705175a055722080a3115371d4a0d55006876786860616b0471b8b36d6facb72ba5a52a362c3c0ee63201181433fe3e101bf3250b06144ca74c33ea191f058831cb58d5
+      value: 18134705175a055722080a3115371d4a0d55006876786860616b0471b8b07a68ffab74f9ee2a3a30300cea1a11320d0beb1a0c25f7060f494b4cdf1b18f3045e38cb5ad8
       flags: 0
     QuickInstaller_com.unity.purchasing_installRecorded:
       value: 2550581500
@@ -15,19 +15,40 @@ EditorUserSettings:
       value: 2550581500
       flags: 0
     RecentlyUsedSceneGuid-0:
-      value: 055307500754590a5e0b5a7211220a444115407f7c7870602b7d4c37b3e53539
-      flags: 0
-    RecentlyUsedSceneGuid-1:
       value: 5b520d0503545b0d0c0c0a2715770748154f4d2c7d7d7e627a7d4a35b4e1646a
       flags: 0
+    RecentlyUsedSceneGuid-1:
+      value: 0057030453570c585c5e5b2444250f4412164e797a79246828784937e1b2353e
+      flags: 0
     RecentlyUsedSceneGuid-2:
-      value: 5b53055e5403510f5f0c557742255944414e1a7c297f71622c70496bb1e6373c
+      value: 5603565f53535a03085b5e2041705a444e164c7d2f2e7265747b4e6abab56d3d
       flags: 0
     RecentlyUsedSceneGuid-3:
-      value: 0057030453570c585c5e5b2444250f4412164e797a79246828784937e1b2353e
+      value: 500751505204580b0b0d0a7714200e44404e1c7b7b7e7333797b1b61b2b16c39
       flags: 0
     RecentlyUsedSceneGuid-4:
       value: 55040400560c5e5d5f5f092647770a44464f1b7b2e2a22607c7f1f6ab1b63568
+      flags: 0
+    RecentlyUsedSceneGuid-5:
+      value: 055307500754590a5e0b5a7211220a444115407f7c7870602b7d4c37b3e53539
+      flags: 0
+    RecentlyUsedSceneGuid-6:
+      value: 5b53055e5403510f5f0c557742255944414e1a7c297f71622c70496bb1e6373c
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 0555505f060c5d0c095e5570492706441416192e7a2d20672f7e4461e7e66d3c
+      flags: 0
+    RecentlyUsedSceneGuid-8:
+      value: 56050102510208025557552112710844474f1c292d7c20362f7d4d36b0e5353e
+      flags: 0
+    UIBuilder.DisableMouseWheelZooming:
+      value: 2550581500
+      flags: 0
+    UIBuilder.EditorExtensionModeKey:
+      value: 2550581500
+      flags: 0
+    UIToolkit.EnableEventDebugger:
+      value: 2550581500
       flags: 0
     UnityEditor.ShaderGraph.Blackboard:
       value: 18135939215a0a5004000b0e15254b524c030a3f2964643d120d1230e9e93a3fd6e826abbd2e2d293c4ead313b08042de6030a0afa240c0d020be94c4bae425d41895ac825e0100ec20313c0d91cddccd3d0c7efcca9bd898891f0beb6fdd1cbfceba0b9f0b3bed8e8f5ace1ff8c978883d3f59e98969989eacfcc

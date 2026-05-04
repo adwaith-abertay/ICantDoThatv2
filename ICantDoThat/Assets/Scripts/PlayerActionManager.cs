@@ -27,7 +27,6 @@ public class PlayerActionManager : MonoBehaviour
         currentEnergy = Mathf.Min(currentEnergy + gained, 15);
         fearedThisTurn.Clear();
         Debug.Log($"Energy generated. Total: {currentEnergy}");
-        PlayerActionUI.Instance.RefreshButtons();
         AirlockManager.Instance.RefreshButtons();
     }
 
@@ -47,17 +46,18 @@ public class PlayerActionManager : MonoBehaviour
         if (tag == "Robot")
         {
             if (Robot.Instance != null) Robot.Instance.ApplyFear();
+            UIEventsListener.OnFrightened?.Invoke("Robot");
         }
         else
         {
             CharacterMovement.ApplyFearToTag(tag);
+            UIEventsListener.OnFrightened?.Invoke(tag);
         }
 
         fearedThisTurn.Add(tag);
         currentEnergy -= 1;
         Debug.Log($"Fear applied to {tag}. Energy left: {currentEnergy}");
 
-        PlayerActionUI.Instance.RefreshButtons();
         CheckEnergyDrained();
     }
 
@@ -69,6 +69,7 @@ public class PlayerActionManager : MonoBehaviour
         if (tag == "Robot")
         {
             if (Robot.Instance != null) Robot.Instance.ApplyGreaterFear();
+            UIEventsListener.OnTerrified?.Invoke("Robot");
         }
         else
         {
@@ -77,6 +78,7 @@ public class PlayerActionManager : MonoBehaviour
             {
                 CharacterMovement cm = obj.GetComponent<CharacterMovement>();
                 if (cm != null) cm.ApplyGreaterFear();
+                UIEventsListener.OnTerrified?.Invoke(tag);
             }
         }
 
@@ -84,7 +86,7 @@ public class PlayerActionManager : MonoBehaviour
         currentEnergy -= 3;
         Debug.Log($"Greater Fear applied to {tag}. Energy left: {currentEnergy}");
 
-        PlayerActionUI.Instance.RefreshButtons();
+     
         CheckEnergyDrained();
     }
 
@@ -96,7 +98,6 @@ public class PlayerActionManager : MonoBehaviour
         currentEnergy -= 4;
         Debug.Log($"Fire started! Energy left: {currentEnergy}");
 
-        PlayerActionUI.Instance.RefreshButtons();
         CheckEnergyDrained();
     }
 
@@ -109,7 +110,7 @@ public class PlayerActionManager : MonoBehaviour
         currentEnergy -= 8;
         Debug.Log($"O2 cut! Energy left: {currentEnergy}");
 
-        PlayerActionUI.Instance.RefreshButtons();
+
         CheckEnergyDrained();
     }
 
@@ -117,20 +118,20 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (Robot.Instance == null) return;
         Robot.Instance.TryHack();
-        PlayerActionUI.Instance.RefreshButtons();
+    
     }
 
     public void ActionCloseDoor()
     {
         DoorManager.Instance.EnterDoorMode();
-        PlayerActionUI.Instance.RefreshButtons();
+
     }
 
 
     public void ActionTriggerAirlock(string tileName)
     {
         AirlockManager.Instance.TryTriggerAirlock(tileName);
-        PlayerActionUI.Instance.RefreshButtons();
+
     }
 
     public void ActionReleaseAlien()
@@ -139,7 +140,7 @@ public class PlayerActionManager : MonoBehaviour
         GameManager.Instance.ReleaseAlien();
         currentEnergy -= 5;
         Debug.Log($"Alien released! Energy left: {currentEnergy}");
-        PlayerActionUI.Instance.RefreshButtons();
+
         CheckEnergyDrained();
     }
 
@@ -179,7 +180,7 @@ public class PlayerActionManager : MonoBehaviour
         currentEnergy -= amount;
         currentEnergy = Mathf.Max(0, currentEnergy);
         Debug.Log($"Energy spent: {amount} | Remaining: {currentEnergy}");
-        PlayerActionUI.Instance.RefreshButtons();
+  
         AirlockManager.Instance.RefreshButtons();
     }
 

@@ -1,0 +1,2353 @@
+fileFormatVersion: 2
+guid: ccfc6d9dc0bfaa947897a49b4b718291
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7678068869446111473
+    second: SiidLogo_0
+  - first:
+      213: 1770120751948476964
+    second: SiidLogo_1
+  - first:
+      213: -2034103418459775784
+    second: SiidLogo_2
+  - first:
+      213: -9038836558762730573
+    second: SiidLogo_3
+  - first:
+      213: 9005574619244112186
+    second: SiidLogo_4
+  - first:
+      213: 1774369183869049712
+    second: SiidLogo_5
+  - first:
+      213: 8023582466684852449
+    second: SiidLogo_6
+  - first:
+      213: -1281650579925017012
+    second: SiidLogo_7
+  - first:
+      213: 4488612177296463587
+    second: SiidLogo_8
+  - first:
+      213: -817897320586430555
+    second: SiidLogo_9
+  - first:
+      213: 617521307755426859
+    second: SiidLogo_10
+  - first:
+      213: -6369413514503562207
+    second: SiidLogo_11
+  - first:
+      213: 2618636609415729987
+    second: SiidLogo_12
+  - first:
+      213: 6536234764892745499
+    second: SiidLogo_13
+  - first:
+      213: 1372708495048713096
+    second: SiidLogo_14
+  - first:
+      213: 4291010545496967867
+    second: SiidLogo_15
+  - first:
+      213: -24541538344720673
+    second: SiidLogo_16
+  - first:
+      213: 9077108278419586509
+    second: SiidLogo_17
+  - first:
+      213: 2117743599008535620
+    second: SiidLogo_18
+  - first:
+      213: 7658519602434693955
+    second: SiidLogo_19
+  - first:
+      213: -5037973955909017046
+    second: SiidLogo_20
+  - first:
+      213: 2859836145113965431
+    second: SiidLogo_21
+  - first:
+      213: 1666117088685740579
+    second: SiidLogo_22
+  - first:
+      213: -2493375528461851694
+    second: SiidLogo_23
+  - first:
+      213: -614244050002963379
+    second: SiidLogo_24
+  - first:
+      213: -5333873866573654507
+    second: SiidLogo_25
+  - first:
+      213: -7330835413922110773
+    second: SiidLogo_26
+  - first:
+      213: 1424489635041940639
+    second: SiidLogo_27
+  - first:
+      213: -560411025974386245
+    second: SiidLogo_28
+  - first:
+      213: -6401296378302937596
+    second: SiidLogo_29
+  - first:
+      213: -208151000831843681
+    second: SiidLogo_30
+  - first:
+      213: -1749974640677772321
+    second: SiidLogo_31
+  - first:
+      213: 812766440372736070
+    second: SiidLogo_32
+  - first:
+      213: -942748410522487875
+    second: SiidLogo_33
+  - first:
+      213: -1808716365979016900
+    second: SiidLogo_34
+  - first:
+      213: -8204743118016415276
+    second: SiidLogo_35
+  - first:
+      213: 8034862541485075713
+    second: SiidLogo_36
+  - first:
+      213: 5370164405839629154
+    second: SiidLogo_37
+  - first:
+      213: -693216439481997172
+    second: SiidLogo_38
+  - first:
+      213: 3101450804640278757
+    second: SiidLogo_39
+  - first:
+      213: -4865606462288926057
+    second: SiidLogo_40
+  - first:
+      213: 1057488919752948509
+    second: SiidLogo_41
+  - first:
+      213: -2154229925310288381
+    second: SiidLogo_42
+  - first:
+      213: 590572444555513762
+    second: SiidLogo_43
+  - first:
+      213: 7974746421675440143
+    second: SiidLogo_44
+  - first:
+      213: 2555042439740658569
+    second: SiidLogo_45
+  - first:
+      213: -4607506755624406869
+    second: SiidLogo_46
+  - first:
+      213: -2453046161411612515
+    second: SiidLogo_47
+  - first:
+      213: 8024914010270423286
+    second: SiidLogo_48
+  - first:
+      213: 60602267318609451
+    second: SiidLogo_49
+  - first:
+      213: 347838486310014690
+    second: SiidLogo_50
+  - first:
+      213: 4493628225363211667
+    second: SiidLogo_51
+  - first:
+      213: 3508596059590088396
+    second: SiidLogo_52
+  - first:
+      213: 9106185296209665068
+    second: SiidLogo_53
+  - first:
+      213: -1608090303563081836
+    second: SiidLogo_54
+  - first:
+      213: 6937659264372559756
+    second: SiidLogo_55
+  - first:
+      213: -3945247440415223880
+    second: SiidLogo_56
+  - first:
+      213: 4220647051807965020
+    second: SiidLogo_57
+  - first:
+      213: -837567872959175308
+    second: SiidLogo_58
+  - first:
+      213: 1926679417096517519
+    second: SiidLogo_59
+  - first:
+      213: 7274739677177395124
+    second: SiidLogo_60
+  - first:
+      213: 2583086849893924601
+    second: SiidLogo_61
+  - first:
+      213: 892556532916591022
+    second: SiidLogo_62
+  - first:
+      213: 4793745753944373032
+    second: SiidLogo_63
+  - first:
+      213: -1396293780130838186
+    second: SiidLogo_64
+  - first:
+      213: -427675637305477117
+    second: SiidLogo_65
+  - first:
+      213: 1345686311270206100
+    second: SiidLogo_66
+  - first:
+      213: 8758001000489683608
+    second: SiidLogo_67
+  - first:
+      213: -5177629323765142538
+    second: SiidLogo_68
+  - first:
+      213: 8912476051353908274
+    second: SiidLogo_69
+  - first:
+      213: -3738221371865311178
+    second: SiidLogo_70
+  - first:
+      213: 2130869736801520491
+    second: SiidLogo_71
+  - first:
+      213: -3867078142485291872
+    second: SiidLogo_72
+  - first:
+      213: -8898113440940508178
+    second: SiidLogo_73
+  - first:
+      213: 2904095641543602191
+    second: SiidLogo_74
+  - first:
+      213: -4319832456797930330
+    second: SiidLogo_75
+  - first:
+      213: -4022757618424803268
+    second: SiidLogo_76
+  - first:
+      213: -666186991251459432
+    second: SiidLogo_77
+  - first:
+      213: -7153029502456256001
+    second: SiidLogo_78
+  - first:
+      213: 5316243182161859821
+    second: SiidLogo_79
+  - first:
+      213: -662654456303639347
+    second: SiidLogo_80
+  - first:
+      213: 5615024713077970942
+    second: SiidLogo_81
+  - first:
+      213: -6408434314317219996
+    second: SiidLogo_82
+  - first:
+      213: -4654367638368116010
+    second: SiidLogo_83
+  - first:
+      213: -4031586854458177480
+    second: SiidLogo_84
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SiidLogo_0
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 193
+        width: 557
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f01254e4fafd8a60800000000000000
+      internalID: 7678068869446111473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_1
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 193
+        width: 337
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 422bf65027bb09810800000000000000
+      internalID: 1770120751948476964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_2
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 183
+        width: 559
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dc1c42d7b965c3e0800000000000000
+      internalID: -2034103418459775784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_3
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 183
+        width: 338
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bb12242a0a9f8280800000000000000
+      internalID: -9038836558762730573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_4
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 174
+        width: 559
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a39a152176a3afc70800000000000000
+      internalID: 9005574619244112186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_5
+      rect:
+        serializedVersion: 2
+        x: 747
+        y: 174
+        width: 338
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07b1ae82f53df9810800000000000000
+      internalID: 1774369183869049712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_6
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 164
+        width: 559
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e89dc02ebd795f60800000000000000
+      internalID: 8023582466684852449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_7
+      rect:
+        serializedVersion: 2
+        x: 741
+        y: 164
+        width: 338
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e55698699a63ee0800000000000000
+      internalID: -1281650579925017012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_8
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 153
+        width: 559
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e69f3a5ef0ca4e30800000000000000
+      internalID: 4488612177296463587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_9
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 153
+        width: 338
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a7b3b768be36a4f0800000000000000
+      internalID: -817897320586430555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_10
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 144
+        width: 559
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b243ffd8b50e19800800000000000000
+      internalID: 617521307755426859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_11
+      rect:
+        serializedVersion: 2
+        x: 716
+        y: 144
+        width: 339
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12c5178b72c4b97a0800000000000000
+      internalID: -6369413514503562207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_12
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 134
+        width: 106
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343de044f14475420800000000000000
+      internalID: 2618636609415729987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_13
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 134
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1fadf163ee55ba50800000000000000
+      internalID: 6536234764892745499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_14
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 134
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8832a837a17dc0310800000000000000
+      internalID: 1372708495048713096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_15
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 134
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bba4dcb3b5bbc8b30800000000000000
+      internalID: 4291010545496967867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_16
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 134
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd6a8b4d99fc8aff0800000000000000
+      internalID: -24541538344720673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 126
+        width: 106
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcdf4faf2ed58fd70800000000000000
+      internalID: 9077108278419586509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_18
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 126
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 444d240459cb36d10800000000000000
+      internalID: 2117743599008535620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 126
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34b5c787007884a60800000000000000
+      internalID: 7658519602434693955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_20
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 126
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a22af522165851ab0800000000000000
+      internalID: -5037973955909017046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_21
+      rect:
+        serializedVersion: 2
+        x: 961
+        y: 126
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773275962dd20b720800000000000000
+      internalID: 2859836145113965431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_22
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 117
+        width: 305
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32252592aac3f1710800000000000000
+      internalID: 1666117088685740579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_23
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 117
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d32166da20c56dd0800000000000000
+      internalID: -2493375528461851694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_24
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 117
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d441d2a7a44c977f0800000000000000
+      internalID: -614244050002963379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_25
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 117
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 516532a7af54af5b0800000000000000
+      internalID: -5333873866573654507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_26
+      rect:
+        serializedVersion: 2
+        x: 952
+        y: 117
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc2a15e0804a34a90800000000000000
+      internalID: -7330835413922110773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_27
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 109
+        width: 305
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9496ea96cdc4c310800000000000000
+      internalID: 1424489635041940639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_28
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 109
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb1a59c14250938f0800000000000000
+      internalID: -560411025974386245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_29
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 109
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40642450cd60a27a0800000000000000
+      internalID: -6401296378302937596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_30
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 109
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f92a6cf74cf7c1df0800000000000000
+      internalID: -208151000831843681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_31
+      rect:
+        serializedVersion: 2
+        x: 947
+        y: 109
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd3a5780657d6b7e0800000000000000
+      internalID: -1749974640677772321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_32
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 100
+        width: 306
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64096c375c6874b00800000000000000
+      internalID: 812766440372736070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_33
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 100
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db33e36c05faae2f0800000000000000
+      internalID: -942748410522487875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_34
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 100
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c31a2625c0626e6e0800000000000000
+      internalID: -1808716365979016900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_35
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 100
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d9fc41da95e22e80800000000000000
+      internalID: -8204743118016415276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_36
+      rect:
+        serializedVersion: 2
+        x: 937
+        y: 100
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10d6f4439e0918f60800000000000000
+      internalID: 8034862541485075713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_37
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 92
+        width: 306
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26b84832318a68a40800000000000000
+      internalID: 5370164405839629154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_38
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 92
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c88e63432533166f0800000000000000
+      internalID: -693216439481997172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_39
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 92
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e8eeea13119a0b20800000000000000
+      internalID: 3101450804640278757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_40
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 92
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a6c6e93b4e97cb0800000000000000
+      internalID: -4865606462288926057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_41
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 92
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1b39c7d194fcae00800000000000000
+      internalID: 1057488919752948509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_42
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 84
+        width: 305
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30e2d59eb43aa12e0800000000000000
+      internalID: -2154229925310288381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_43
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 84
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2af8dd36282223800800000000000000
+      internalID: 590572444555513762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_44
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 84
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0838c55e9dfbae60800000000000000
+      internalID: 7974746421675440143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_45
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 84
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9831acecf85557320800000000000000
+      internalID: 2555042439740658569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_46
+      rect:
+        serializedVersion: 2
+        x: 919
+        y: 84
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba07bc27409de00c0800000000000000
+      internalID: -4607506755624406869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_47
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 75
+        width: 306
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d90ec63538705fdd0800000000000000
+      internalID: -2453046161411612515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_48
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 75
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f8593746c83e5f60800000000000000
+      internalID: 8024914010270423286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_49
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 75
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b26eb18e07d47d000800000000000000
+      internalID: 60602267318609451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_50
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 75
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eec7b7a245c3d400800000000000000
+      internalID: 347838486310014690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_51
+      rect:
+        serializedVersion: 2
+        x: 910
+        y: 75
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 395717d00139c5e30800000000000000
+      internalID: 4493628225363211667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_52
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 67
+        width: 305
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc6d330e68901b030800000000000000
+      internalID: 3508596059590088396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_53
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 67
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2c567fb74baf5e70800000000000000
+      internalID: 9106185296209665068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_54
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 67
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4975f51936aeea9e0800000000000000
+      internalID: -1608090303563081836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_55
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 67
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8fcf99f754874060800000000000000
+      internalID: 6937659264372559756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_56
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 67
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bf08031b5aaf39c0800000000000000
+      internalID: -3945247440415223880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_57
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 58
+        width: 106
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5f3055b120c29a30800000000000000
+      internalID: 4220647051807965020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_58
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 58
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4752df8057c5064f0800000000000000
+      internalID: -837567872959175308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_59
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 58
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87381cc8b0fcba10800000000000000
+      internalID: 1926679417096517519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_60
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 58
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b73993713115f460800000000000000
+      internalID: 7274739677177395124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_61
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 58
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fef8efddc7f8d320800000000000000
+      internalID: 2583086849893924601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_62
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 50
+        width: 106
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea9927e007ff26c00800000000000000
+      internalID: 892556532916591022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_63
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 50
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82734676d5ec68240800000000000000
+      internalID: 4793745753944373032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_64
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 50
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 659c631743e5f9ce0800000000000000
+      internalID: -1396293780130838186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_65
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 50
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30871571647901af0800000000000000
+      internalID: -427675637305477117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_66
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 50
+        width: 77
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49acd520296dca210800000000000000
+      internalID: 1345686311270206100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_67
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 41
+        width: 306
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89a04b0128baa8970800000000000000
+      internalID: 8758001000489683608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_68
+      rect:
+        serializedVersion: 2
+        x: 369
+        y: 41
+        width: 205
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb2552ff8d5528b0800000000000000
+      internalID: -5177629323765142538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_69
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 41
+        width: 373
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23430269fb97fab70800000000000000
+      internalID: 8912476051353908274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_70
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 33
+        width: 305
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 638d13ed77b2f1cc0800000000000000
+      internalID: -3738221371865311178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_71
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 33
+        width: 204
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6b4fac5cbe529d10800000000000000
+      internalID: 2130869736801520491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_72
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 33
+        width: 374
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ac9c760be0655ac0800000000000000
+      internalID: -3867078142485291872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_73
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 25
+        width: 306
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eebbc9d38fc838480800000000000000
+      internalID: -8898113440940508178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_74
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 25
+        width: 205
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0077f3799b6d4820800000000000000
+      internalID: 2904095641543602191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_75
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 25
+        width: 373
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ac3b5b944fdc04c0800000000000000
+      internalID: -4319832456797930330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_76
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 16
+        width: 306
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c301b40724b4c28c0800000000000000
+      internalID: -4022757618424803268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_77
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 16
+        width: 204
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8927878067a31c6f0800000000000000
+      internalID: -666186991251459432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_78
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 16
+        width: 373
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff9a43ed0955bbc90800000000000000
+      internalID: -7153029502456256001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_79
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 8
+        width: 305
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de4995ce10717c940800000000000000
+      internalID: 5316243182161859821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_80
+      rect:
+        serializedVersion: 2
+        x: 338
+        y: 8
+        width: 205
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc4213b6847cdc6f0800000000000000
+      internalID: -662654456303639347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_81
+      rect:
+        serializedVersion: 2
+        x: 551
+        y: 8
+        width: 374
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef75d041a339ced40800000000000000
+      internalID: 5615024713077970942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_82
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 305
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 467b2b8c1faa017a0800000000000000
+      internalID: -6408434314317219996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_83
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 0
+        width: 204
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d2aef4fa4d586fb0800000000000000
+      internalID: -4654367638368116010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SiidLogo_84
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 373
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 838c2eabd1dec08c0800000000000000
+      internalID: -4031586854458177480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SiidLogo_0: 7678068869446111473
+      SiidLogo_1: 1770120751948476964
+      SiidLogo_10: 617521307755426859
+      SiidLogo_11: -6369413514503562207
+      SiidLogo_12: 2618636609415729987
+      SiidLogo_13: 6536234764892745499
+      SiidLogo_14: 1372708495048713096
+      SiidLogo_15: 4291010545496967867
+      SiidLogo_16: -24541538344720673
+      SiidLogo_17: 9077108278419586509
+      SiidLogo_18: 2117743599008535620
+      SiidLogo_19: 7658519602434693955
+      SiidLogo_2: -2034103418459775784
+      SiidLogo_20: -5037973955909017046
+      SiidLogo_21: 2859836145113965431
+      SiidLogo_22: 1666117088685740579
+      SiidLogo_23: -2493375528461851694
+      SiidLogo_24: -614244050002963379
+      SiidLogo_25: -5333873866573654507
+      SiidLogo_26: -7330835413922110773
+      SiidLogo_27: 1424489635041940639
+      SiidLogo_28: -560411025974386245
+      SiidLogo_29: -6401296378302937596
+      SiidLogo_3: -9038836558762730573
+      SiidLogo_30: -208151000831843681
+      SiidLogo_31: -1749974640677772321
+      SiidLogo_32: 812766440372736070
+      SiidLogo_33: -942748410522487875
+      SiidLogo_34: -1808716365979016900
+      SiidLogo_35: -8204743118016415276
+      SiidLogo_36: 8034862541485075713
+      SiidLogo_37: 5370164405839629154
+      SiidLogo_38: -693216439481997172
+      SiidLogo_39: 3101450804640278757
+      SiidLogo_4: 9005574619244112186
+      SiidLogo_40: -4865606462288926057
+      SiidLogo_41: 1057488919752948509
+      SiidLogo_42: -2154229925310288381
+      SiidLogo_43: 590572444555513762
+      SiidLogo_44: 7974746421675440143
+      SiidLogo_45: 2555042439740658569
+      SiidLogo_46: -4607506755624406869
+      SiidLogo_47: -2453046161411612515
+      SiidLogo_48: 8024914010270423286
+      SiidLogo_49: 60602267318609451
+      SiidLogo_5: 1774369183869049712
+      SiidLogo_50: 347838486310014690
+      SiidLogo_51: 4493628225363211667
+      SiidLogo_52: 3508596059590088396
+      SiidLogo_53: 9106185296209665068
+      SiidLogo_54: -1608090303563081836
+      SiidLogo_55: 6937659264372559756
+      SiidLogo_56: -3945247440415223880
+      SiidLogo_57: 4220647051807965020
+      SiidLogo_58: -837567872959175308
+      SiidLogo_59: 1926679417096517519
+      SiidLogo_6: 8023582466684852449
+      SiidLogo_60: 7274739677177395124
+      SiidLogo_61: 2583086849893924601
+      SiidLogo_62: 892556532916591022
+      SiidLogo_63: 4793745753944373032
+      SiidLogo_64: -1396293780130838186
+      SiidLogo_65: -427675637305477117
+      SiidLogo_66: 1345686311270206100
+      SiidLogo_67: 8758001000489683608
+      SiidLogo_68: -5177629323765142538
+      SiidLogo_69: 8912476051353908274
+      SiidLogo_7: -1281650579925017012
+      SiidLogo_70: -3738221371865311178
+      SiidLogo_71: 2130869736801520491
+      SiidLogo_72: -3867078142485291872
+      SiidLogo_73: -8898113440940508178
+      SiidLogo_74: 2904095641543602191
+      SiidLogo_75: -4319832456797930330
+      SiidLogo_76: -4022757618424803268
+      SiidLogo_77: -666186991251459432
+      SiidLogo_78: -7153029502456256001
+      SiidLogo_79: 5316243182161859821
+      SiidLogo_8: 4488612177296463587
+      SiidLogo_80: -662654456303639347
+      SiidLogo_81: 5615024713077970942
+      SiidLogo_82: -6408434314317219996
+      SiidLogo_83: -4654367638368116010
+      SiidLogo_84: -4031586854458177480
+      SiidLogo_9: -817897320586430555
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
