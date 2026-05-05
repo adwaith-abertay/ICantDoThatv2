@@ -121,6 +121,11 @@ public class AirlockManager : MonoBehaviour
         if (!airlockWithPod.Contains(airlockIndex)) return;  // no pod parked here
         if (crewInSpace.ContainsKey(crew)) return;           // already in space
 
+        // ✅ Only trigger pod if crew stepped on one of the FIRST 4 tiles
+        AirlockData airlock = airlocks[airlockIndex];
+        List<string> podTiles = airlock.tiles.GetRange(0, Mathf.Min(4, airlock.tiles.Count));
+        if (!podTiles.Contains(tileName)) return; // ← stepped in airlock zone but NOT on a pod tile
+
         // Predict next turn energy — if player can afford to flush, don't use pod
         int nextEnergy = PlayerActionManager.Instance.PredictNextTurnEnergy();
         if (nextEnergy >= 8)
@@ -134,7 +139,7 @@ public class AirlockManager : MonoBehaviour
         RemovePodFrom(airlockIndex);
 
         crew.gameObject.SetActive(false);
-        Debug.Log($"{crew.gameObject.tag} used pod safely — player will only have {nextEnergy} energy, can't flush.");
+        Debug.Log($"{crew.gameObject.tag} used pod safely at {tileName} — only have {nextEnergy} energy, can't flush.");
     }
 
     public void ReturnCrewFromSpace()

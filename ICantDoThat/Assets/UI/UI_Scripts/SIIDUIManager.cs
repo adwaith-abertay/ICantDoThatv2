@@ -128,9 +128,31 @@ public class SIIDUIManager : MonoBehaviour
 
             for (int i = 1; i <= 5; i++)
             {
-                var airlockBtn = root.Q<Button>($"Airlock{i}");
-                if (airlockBtn != null) airlockBtn.clicked += OnAirlockTargetSelected;
+                int captured = i;
+
+                // ✅ Use the exact names from your UXML
+                string btnName = captured == 5 ? "Airlock5" : $"Airlock{captured}BTN";
+
+                var airlockBtn = root.Q<Button>(btnName);
+
+                if (airlockBtn != null)
+                {
+                    airlockBtn.clicked += () => OnAirlockTargetSelected(captured);
+                    Debug.Log($"✅ Hooked up: {btnName}");
+                }
+                else
+                {
+                    Debug.LogWarning($"❌ Could not find: {btnName}");
+                }
             }
+            for (int i = 1; i <= 5; i++)
+            {
+                var testBtn = root.Q<Button>($"Airlock{i}");
+                Debug.Log($"Airlock{i} found: {testBtn != null}");
+            }
+                        var allBtns = root.Query<Button>().ToList();
+            foreach (var b in allBtns)
+                Debug.Log($"Button found: '{b.name}'");
         }
 
         // ==========================================
@@ -286,9 +308,20 @@ public class SIIDUIManager : MonoBehaviour
         airlocksHolder.schedule.Execute(() => airlocksHolder.style.opacity = 1f).StartingIn(10);
     }
 
-    private void OnAirlockTargetSelected()
+    private void OnAirlockTargetSelected(int index)
     {
-        // Now it cancels the mode entirely, which closes the menu AND removes the button highlight
+        if (activeMode == ActionMode.VentAirlock || activeMode == ActionMode.VentPod)
+        {
+            string airlockName = $"AirLock{index}";
+            AirlockData target = AirlockManager.Instance.airlocks
+                .Find(a => a.airlockName == airlockName);
+
+            if (target != null)
+                AirlockManager.Instance.TryTriggerAirlock(target);
+            else
+                Debug.LogWarning($"No AirlockData found with name '{airlockName}'");
+        }
+
         CancelMode();
     }
 

@@ -27884,6 +27884,16 @@ MonoBehaviour:
     - D3
     - E2
     - D2
+    - F5
+    - D5
+    - C5
+    - F4
+    - D4
+    - C4
+    - F3
+    - C3
+    - F2
+    - C2
     buttonName: Airlock1BTN
     cost: 6
   - airlockName: AirLock2
@@ -27892,6 +27902,14 @@ MonoBehaviour:
     - D18
     - C17
     - C18
+    - D16
+    - D19
+    - C19
+    - E16
+    - E17
+    - E18
+    - E19
+    - C16
     buttonName: Airlock2BTN
     cost: 6
   - airlockName: AirLock3
@@ -27900,6 +27918,16 @@ MonoBehaviour:
     - A32
     - B31
     - B32
+    - A30
+    - A33
+    - B30
+    - B33
+    - D30
+    - D31
+    - D32
+    - D33
+    - C31
+    - C33
     buttonName: Airlock3BTN
     cost: 6
   - airlockName: AirLock4
@@ -27908,6 +27936,31 @@ MonoBehaviour:
     - U11
     - T10
     - T11
+    - U8
+    - U9
+    - U12
+    - U13
+    - T8
+    - T13
+    - S8
+    - S11
+    - S13
+    - S10
+    - S12
+    - R8
+    - R11
+    - R10
+    - Q8
+    - Q9
+    - Q10
+    - Q11
+    - Q12
+    - Q13
+    - T9
+    - T12
+    - T13
+    - R12
+    - R13
     buttonName: Airlock4BTN
     cost: 6
   - airlockName: AirLock5
@@ -27917,6 +27970,13 @@ MonoBehaviour:
     - V28
     - V29
     - U30
+    - S28
+    - U27
+    - V27
+    - S29
+    - S30
+    - V30
+    - T30
     buttonName: Airlock5BTN
     cost: 6
   podObjects:

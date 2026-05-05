@@ -24,7 +24,7 @@ public class PlayerActionManager : MonoBehaviour
     public void GenerateEnergy()
     {
         int gained = CapPointManager.Instance.GenerateEnergy();
-        currentEnergy = Mathf.Min(currentEnergy + gained, 15);
+        int predicted = Mathf.Min(currentEnergy + gained, 10);
         fearedThisTurn.Clear();
         Debug.Log($"Energy generated. Total: {currentEnergy}");
         AirlockManager.Instance.RefreshButtons();
@@ -34,7 +34,7 @@ public class PlayerActionManager : MonoBehaviour
     {
         int gained = CapPointManager.Instance.GetActiveCount();
         if (GameManager.Instance.IsMainSwitchActive()) gained += 1;
-        int predicted = Mathf.Min(currentEnergy + gained, 15);
+        int predicted = Mathf.Min(currentEnergy + gained, 10);
         return predicted;
     }
 
@@ -42,7 +42,13 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (currentEnergy < 1 || fearedThisTurn.Contains(tag)) return;
 
-        // Robot has its own component — handle separately
+        // Captain is immune — don't waste energy
+        if (tag == "Captain")
+        {
+            Debug.Log("Captain is immune to fear — action blocked.");
+            return;
+        }
+
         if (tag == "Robot")
         {
             if (Robot.Instance != null) Robot.Instance.ApplyFear();
@@ -57,7 +63,6 @@ public class PlayerActionManager : MonoBehaviour
         fearedThisTurn.Add(tag);
         currentEnergy -= 1;
         Debug.Log($"Fear applied to {tag}. Energy left: {currentEnergy}");
-
         CheckEnergyDrained();
     }
 
@@ -65,7 +70,13 @@ public class PlayerActionManager : MonoBehaviour
     {
         if (currentEnergy < 3 || fearedThisTurn.Contains(tag)) return;
 
-        // Robot has its own component — handle separately
+        //  Captain is immune — don't waste energy
+        if (tag == "Captain")
+        {
+            Debug.Log("Captain is immune to greater fear — action blocked.");
+            return;
+        }
+
         if (tag == "Robot")
         {
             if (Robot.Instance != null) Robot.Instance.ApplyGreaterFear();
@@ -85,8 +96,6 @@ public class PlayerActionManager : MonoBehaviour
         fearedThisTurn.Add(tag);
         currentEnergy -= 3;
         Debug.Log($"Greater Fear applied to {tag}. Energy left: {currentEnergy}");
-
-     
         CheckEnergyDrained();
     }
 

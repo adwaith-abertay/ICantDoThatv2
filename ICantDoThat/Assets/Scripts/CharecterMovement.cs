@@ -82,11 +82,22 @@ public class CharacterMovement : MonoBehaviour
         stepsUsedThisTurn = 0;
 
         int stepsAllowed = overrideSteps > 0 ? overrideSteps
-                         : isGreaterFeared ? 1
-                         : isFeared ? maxSteps / 2
-                         : maxSteps;
-        isFeared = false;
-        isGreaterFeared = false;
+                 : isGreaterFeared ? 1
+                 : isFeared ? maxSteps / 2
+                 : maxSteps;
+
+        if (gameObject.CompareTag("Captain"))
+        {
+            isFeared = false;
+            isGreaterFeared = false;
+            stepsAllowed = overrideSteps > 0 ? overrideSteps : maxSteps;
+            Debug.Log("Its Captain Mate");
+        }
+        else
+        {
+            isFeared = false;
+            isGreaterFeared = false;
+        }
 
         int stepsRemaining = stepsAllowed;
 
@@ -313,6 +324,13 @@ public class CharacterMovement : MonoBehaviour
 
     public void ApplyFear()
     {
+        // ✅ Captain is immune to fear
+        if (gameObject.CompareTag("Captain"))
+        {
+            Debug.Log("Captain is immune to fear — ignored!");
+            return;
+        }
+
         isFeared = true;
         CrewIconManager.Instance.SetFeared(gameObject.tag);
         Debug.Log($"{gameObject.tag} is feared! Steps reduced next move.");
@@ -320,6 +338,13 @@ public class CharacterMovement : MonoBehaviour
 
     public void ApplyGreaterFear()
     {
+        // ✅ Captain is immune to greater fear too
+        if (gameObject.CompareTag("Captain"))
+        {
+            Debug.Log("Captain is immune to greater fear — ignored!");
+            return;
+        }
+
         isFeared = true;
         isGreaterFeared = true;
         CrewIconManager.Instance.SetFeared(gameObject.tag);

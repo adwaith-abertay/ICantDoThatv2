@@ -144,6 +144,15 @@ public class GameManager : MonoBehaviour
     {
         if (crew == null) return;
 
+        //  Check for Soldier extra life BEFORE removing
+        if (crew.UseExtraLife())
+        {
+            Debug.Log($"{crew.gameObject.tag} used their Soldier extra life — surviving!");
+            // Teleport them back to their spawn tile so they're safe
+            crew.TeleportToTile(crew.spawnTile);
+            return; // ← stop here, don't kill them
+        }
+
         crewMembers.Remove(crew);
 
         if (crew.gameObject != null)
@@ -153,7 +162,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Crew member eliminated! {crewMembers.Count} remaining.");
 
-        // All crew dead — player (AI of the ship) wins
         if (crewMembers.Count == 0)
             PlayerWins("All crew eliminated!");
     }
