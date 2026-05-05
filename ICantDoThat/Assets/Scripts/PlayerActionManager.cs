@@ -24,9 +24,9 @@ public class PlayerActionManager : MonoBehaviour
     public void GenerateEnergy()
     {
         int gained = CapPointManager.Instance.GenerateEnergy();
-        int predicted = Mathf.Min(currentEnergy + gained, 10);
+        currentEnergy = Mathf.Min(currentEnergy + gained, 10);
         fearedThisTurn.Clear();
-        Debug.Log($"Energy generated. Total: {currentEnergy}");
+        Debug.Log($"Energy after regen: {currentEnergy}"); // ✅ add this
         AirlockManager.Instance.RefreshButtons();
     }
 

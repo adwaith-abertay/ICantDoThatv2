@@ -50,7 +50,8 @@ public class CapPointManager : MonoBehaviour
 
         // Notify UI that a crew member has disabled a CAP point
         UIEventsListener.OnCapDisabled?.Invoke(crewTag);
-        AudioManager.Instance.PlayCapDisabled();
+        if (AudioManager.Instance != null)
+    AudioManager.Instance.PlayCapDisabled();
 
         TileData tile = GridManager.Instance.GetTile(tileName);
         if (tile != null && destroyedMaterial != null)

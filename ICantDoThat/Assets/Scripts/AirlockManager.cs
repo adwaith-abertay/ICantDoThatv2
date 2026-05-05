@@ -286,13 +286,12 @@ public class AirlockManager : MonoBehaviour
             ? PlayerActionManager.Instance.GetCurrentEnergy()
             : 0;
 
+        Debug.Log($"RefreshButtons called — energy: {energy}"); // ✅ add this
+
         foreach (AirlockData airlock in airlocks)
         {
             if (airlock.uieButton != null)
-            {
-                // UI Toolkit uses SetEnabled() instead of .interactable
                 airlock.uieButton.SetEnabled(energy >= airlock.cost);
-            }
         }
     }
 
